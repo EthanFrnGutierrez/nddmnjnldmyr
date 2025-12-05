@@ -2876,6 +2876,10 @@ body {
     .adr-main-container{
         padding-top:5rem !important;
     }
+    .adr-modal-close{
+        width: 3rem !important;
+        height: 2.5rem !important;
+    }
 }
 @media (max-width: 360px) {
     .adr-main-container{
