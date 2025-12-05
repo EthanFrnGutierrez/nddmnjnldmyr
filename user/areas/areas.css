@@ -2957,3 +2957,19 @@ body {
         height: 2.25rem;
     }
 }*/
+
+@media screen and (min-width: 361px) and (max-width: 600px) {
+    .create-btn, .search-box{
+        border-radius: 1rem !important;}
+    .area-requirements-grid{
+        gap: 1rem !important;}
+    .area-name{
+        font-size: 0.85rem !important;}
+    .hero-section{
+        padding-top: 5rem !important;
+    }
+}
+@media screen and (max-width:360px){
+    .create-btn, .search-box{
+        border-radius: 1rem !important;}
+}
