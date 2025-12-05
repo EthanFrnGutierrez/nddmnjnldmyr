@@ -1090,11 +1090,11 @@ body {
 
     .muni-areas-main-container {
         padding-top: 4rem !important;
-        padding: 4rem 0 0.5rem 0 !important;
+        padding: 4.5rem 0 0.5rem 0 !important;
     }
 
     .muni-areas-cards-grid {
-        gap: 0.5rem !important;
+        gap: 1rem !important;
     }
 }
 
@@ -1202,12 +1202,12 @@ body {
     }
 
     .muni-areas-main-container {
-        padding-top: 4rem !important;
-        padding: 4rem 0 0.5rem 0 !important;
+        padding-top: 4.5rem !important;
+        padding: 4.5rem 0 0.5rem 0 !important;
     }
 
     .muni-areas-cards-grid {
-        gap: 0.5rem !important;
+        gap: 0.8rem !important;
     }
 }
 
@@ -1317,11 +1317,11 @@ body {
 
     .muni-areas-main-container {
         padding-top: 4rem !important;
-        padding: 4rem 0 0.5rem 0 !important;
+        padding: 4.5rem 0 0.5rem 0 !important;
     }
 
     .muni-areas-cards-grid {
-        gap: 0.5rem !important;
+        gap: 01rem !important;
     }
 
 }
