@@ -2873,4 +2873,12 @@ body {
         margin-top: auto !important;
         margin-bottom: 1.5rem !important;
     }
+    .adr-main-container{
+        padding-top:5rem !important;
+    }
+}
+@media (max-width: 360px) {
+    .adr-main-container{
+        padding-top:4.3rem !important;
+    }
 }
