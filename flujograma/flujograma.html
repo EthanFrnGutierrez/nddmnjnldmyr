@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDSR - FLUJOGRAMA</title>
+    <link rel="stylesheet" href="flujograma.css">
+    <link rel="stylesheet" href="/admin/admin.css">
+    <link rel="icon" type="image/png" href="../imgs/LOGO_MUNICIPALIDAD.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="adr-header">
+        <div class="adr-header-content">
+            <!-- Logo, título y usuario juntos -->
+            <div class="adr-logo-section">
+                <img src="../imgs/LOGO_MUNICIPALIDAD.png" alt="Logo Municipalidad" class="adr-logo">
+                <div class="adr-title-group">
+                    <h1 class="adr-main-title">Municipalidad Distrital de San Ramón</h1>
+                    <p class="adr-subtitle">Bienvenido</p>
+                </div>
+            </div>
+
+            <!-- Botón hamburguesa -->
+            <button class="adr-hamburger" id="hamburgerBtn" aria-label="Menú">
+                <span class="adr-hamburger-line"></span>
+                <span class="adr-hamburger-line"></span>
+                <span class="adr-hamburger-line"></span>
+            </button>
+
+            <!-- Navegación -->
+            <nav class="adr-nav" id="navMenu">
+                <a href="/admin/admin.html" class="adr-nav-link">DASHBOARD</a>
+                <a href="/request/requerimientos.html" class="adr-nav-link">REQUERIMIENTOS</a>
+                <a href="/flujograma/flujograma.html" class="adr-nav-link adr-active">FLUJOGRAMA</a>
+                <a href="/log/login.html" class="adr-nav-link adr-nav-salir">SALIR</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR DE LA IMAGEN DEL FLUJOGRAMA -->
+    <main class="flj-image-container">
+        <img src="../imgs/flujograma01.png" alt="Flujograma de Procesos MDSR" class="flj-image">
+    </main>
+
+    <!-- Overlay -->
+    <div class="adr-menu-overlay" id="menuOverlay"></div>
+
+    <!-- JavaScript del menú -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const nav = document.getElementById('navMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const body = document.body;
+
+            function toggleMenu() {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+                body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+            }
+
+            function closeMenu() {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
+                body.style.overflow = '';
+            }
+
+            if (hamburger) hamburger.addEventListener('click', toggleMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
+
+            const navLinks = document.querySelectorAll('.adr-nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && nav.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+
+            let resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    if (window.innerWidth > 768 && nav.classList.contains('active')) {
+                        closeMenu();
+                    }
+                }, 250);
+            });
+        });
+
+        // Scroll al inicio al cargar
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        });
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-V6hfGyOETDNxJf8Stb9DujbxQTIM76c",
+            authDomain: "web-requerimientos.firebaseapp.com",
+            projectId: "web-requerimientos",
+            storageBucket: "web-requerimientos.appspot.com",
+            messagingSenderId: "707688130249",
+            appId: "1:707688130249:web:c46b6252c46083b6e9cf18",
+            measurementId: "G-TV2C27SXD3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                document.querySelector('.adr-subtitle').textContent = `Hola, ${user.email}`;
+            } else {
+                window.location.href = "/log/login.html";
+            }
+        });
+    </script>
+</body>
+
+</html>

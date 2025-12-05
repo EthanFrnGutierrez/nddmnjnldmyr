@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../imgs/LOGO_MUNICIPALIDAD.png" type="image/png">
+    <title>Municipalidad Distrital de San Ramón - Portal de Acceso</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="ai-main-container">
+        <div class="ai-content-wrapper">
+            <header class="ai-header">
+                <div class="ai-logo-container">
+                    <img src="../imgs/LOGO_MUNICIPALIDAD.png" alt="Logo Municipalidad San Ramón" class="ai-logo-img">
+                </div>
+                <div class="ai-header-text">
+                    <h1 class="ai-title">
+                        MUNICIPALIDAD DISTRITAL DE<br>
+                        <span class="ai-title-highlight">SAN RAMÓN</span>
+                    </h1>
+                    <p class="ai-welcome">¡Bienvenido!</p>
+                </div>
+            </header>
+
+            <!-- Ilustración de personas (decorativa) -->
+            <!--<div class="ai-illustration-container">
+                <div class="ai-person-group">
+                    <div class="ai-person ai-person-1">
+                        <i data-lucide="user" class="ai-icon-person"></i>
+                    </div>
+                    <div class="ai-person ai-person-2">
+                        <i data-lucide="users" class="ai-icon-person"></i>
+                    </div>
+                    <div class="ai-person ai-person-3">
+                        <i data-lucide="user-check" class="ai-icon-person"></i>
+                    </div>
+                </div>
+            </div>-->
+            <div class="ai-login-card">
+                <form class="ai-form" id="loginForm">
+                    <div class="ai-form-group">
+                        <label for="username" class="ai-form-label">
+                            <i data-lucide="mail" class="ai-icon-small"></i>
+                            <span>Usuario o correo electrónico</span>
+                        </label>
+                        <div class="ai-input-wrapper">
+                            <i data-lucide="user" class="ai-input-icon"></i>
+                            <input type="text" id="username" name="username" class="ai-input"
+                                placeholder="Ingresa tu usuario o correo" required>
+                        </div>
+                    </div>
+                    <div class="ai-form-group">
+                        <label for="password" class="ai-form-label">
+                            <i data-lucide="lock" class="ai-icon-small"></i>
+                            <span>Contraseña</span>
+                        </label>
+                        <div class="ai-input-wrapper">
+                            <i data-lucide="key" class="ai-input-icon"></i>
+                            <input type="password" id="password" name="password" class="ai-input"
+                                placeholder="Ingresa tu contraseña" required>
+                            <button type="button" class="ai-toggle-password" id="togglePassword">
+                                <i data-lucide="eye" class="ai-icon-toggle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="ai-btn-primary">
+                        <i data-lucide="log-in" class="ai-btn-icon"></i>
+                        <span>Iniciar sesión</span>
+                    </button>
+                    <!-- <div class="ai-forgot-password">
+                        <a href="#" class="ai-link">
+                            <i data-lucide="help-circle" class="ai-icon-tiny"></i>
+                            ¿Olvidaste tu contraseña?
+                        </a>
+                    </div>-->
+
+                </form>
+            </div>
+
+            <!-- Footer con información adicional -->
+            <!--<footer class="ai-footer">
+                <div class="ai-footer-icons">
+                    <div class="ai-footer-icon-item">
+                        <i data-lucide="shield-check" class="ai-icon-footer"></i>
+                        <span>Seguro</span>
+                    </div>
+                    <div class="ai-footer-icon-item">
+                        <i data-lucide="clock" class="ai-icon-footer"></i>
+                        <span>24/7</span>
+                    </div>
+                    <div class="ai-footer-icon-item">
+                        <i data-lucide="phone" class="ai-icon-footer"></i>
+                        <span>Soporte</span>
+                    </div>
+                </div>
+            </footer>-->
+
+        </div>
+    </div>
+    <script>
+        lucide.createIcons();
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                const icon = this.querySelector('.ai-icon-toggle');
+                icon.setAttribute('data-lucide', type === 'password' ? 'eye' : 'eye-off');
+                lucide.createIcons();
+            });
+        }
+    </script>
+    <script type="module">
+        import { auth } from "/firebase.js";
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+        // Lista de administradores (corrige emails aquí)
+        const adminEmails = [
+            "juanaroldantrinidad@gmail.com",
+            "leydicalero@gmail.com",
+            "mayraalexandra@gmail.com"
+        ];
+
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value;
+
+                if (!email || !password) {
+                    alert("Por favor ingresa email y contraseña.");
+                    return;
+                }
+
+                try {
+                    const cred = await signInWithEmailAndPassword(auth, email, password);
+                    const user = cred.user;
+                    console.log("Sesión iniciada:", user.email);
+
+                    // redirige según sea admin o usuario
+                    if (adminEmails.includes(user.email)) {
+                        window.location.href = "/admin/admin.html";
+                    } else {
+                        window.location.href = "/user/user.html";
+                    }
+                } catch (err) {
+                    console.error("Error en login:", err);
+                    alert("No tienes acceso | Verifica tus credenciales.");
+                }
+            });
+        }
+    </script>
+    <script type="module" src="/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js"></script>
+    <script>
+        // Scroll al inicio al cargar
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        });
+
+        // Scroll al inicio al mostrar modales
+        document.addEventListener('DOMContentLoaded', () => {
+            const modals = document.querySelectorAll('.modal-overlay, .adr-modal');
+            modals.forEach(modal => {
+                const observer = new MutationObserver(() => {
+                    if (modal.classList.contains('active')) {
+                        const modalContent = modal.querySelector('.modal-content, .create-modal, .detail-modal');
+                        if (modalContent) {
+                            modalContent.scrollTop = 0;
+                        }
+                    }
+                });
+                observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+            });
+        });
+    </script>
+</body>
+
+</html>

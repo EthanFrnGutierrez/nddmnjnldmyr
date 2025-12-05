@@ -1,0 +1,181 @@
+# 🗂️ Sistema de Gestión de Requerimientos
+
+Este proyecto es un **Sistema de Gestión de Requerimientos** que desarrollé para organizar, registrar y hacer seguimiento a los requerimientos generados por los usuarios o áreas. El objetivo principal es centralizar la información, evitar pérdidas de solicitudes y mejorar el flujo de atención dentro de la institución.
+
+---
+
+## 📌 **Índice**
+
+1. Descripción del Proyecto
+2. Objetivos
+3. Funcionalidades
+4. Tecnologías Utilizadas
+5. Estructura del Proyecto
+6. Instalación y Configuración
+7. Uso del Sistema
+8. Roles del Sistema
+9. Capturas de Pantalla (opcional)
+10. Futuras Mejoras
+11. Autor
+
+---
+
+## 📘 **1. Descripción del Proyecto**
+
+El **Sistema de Gestión de Requerimientos** permite registrar solicitudes, visualizarlas en un panel, actualizarlas y gestionarlas dependiendo del rol del usuario. Está pensado para instituciones que manejan procesos internos y necesitan mantener control de todas las solicitudes realizadas.
+
+Como parte del diseño, se incluye login, navegación clara y un flujo sencillo tanto para usuarios como para administradores.
+
+---
+
+## 🎯 **2. Objetivos**
+
+* Mantener un registro ordenado de requerimientos.
+* Permitir una atención más rápida y eficiente.
+* Facilitar el seguimiento de estados (Pendiente, En proceso, Atendido, Observado).
+* Evitar pérdida de solicitudes o confusión entre áreas.
+* Ofrecer un sistema web ligero y fácil de usar para cualquier usuario.
+
+---
+
+## ⚙️ **3. Funcionalidades**
+
+### 📝 **Usuarios**
+
+* Crear requerimientos.
+* Editar o actualizar datos propios (si aplica).
+* Ver el estado de todas sus solicitudes.
+* Revisar detalles de cada requerimiento.
+
+### 🛠️ **Administradores**
+
+* Ver todos los requerimientos registrados.
+* Actualizar estados según avance del trabajo.
+* Editar información completa del requerimiento.
+* Eliminar requerimientos innecesarios o duplicados.
+* Administrar usuarios (opcional según tu implementación).
+
+### 💡 **Extras (si los implementaste)**
+
+* Sistema de autenticación (Firebase Auth o login propio).
+* Sistema responsive para pantallas móviles.
+* Exportación a Excel o PDF.
+* Notificaciones.
+
+---
+
+## 🧰 **4. Tecnologías Utilizadas**
+
+Dependiendo de tu stack, aquí tienes una plantilla completa:
+
+* **Frontend:**
+
+  * HTML5
+  * CSS3 / Bootstrap / Tailwind (según corresponda)
+  * JavaScript
+
+* **Backend:**
+
+  * Firebase Firestore
+
+* **Autenticación (Opcional):**
+
+  * Firebase Auth
+  * JWT
+  * Sesiones en PHP
+
+* **Herramientas adicionales:**
+
+  * Git y GitHub
+  * Figma / Canva (para prototipos o interfaces)
+
+---
+
+## 🛠️ **6. Instalación y Configuración**
+
+### **1. Clonar el repositorio**
+
+```bash
+git clone https://github.com/tuusuario/sistema-requerimientos
+```
+
+### **2. Abrir el proyecto**
+
+```bash
+cd sistema-requerimientos
+```
+
+### **3. Configurar el backend o Firebase**
+
+Si usas Firebase, coloca tus credenciales en tu archivo JS:
+
+```js
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+};
+```
+
+Si usas backend propio, coloca la configuración correspondiente (PHP, Node, MySQL, etc.).
+
+### **4. Ejecutar el proyecto**
+
+Solo abre el archivo `login.html` en tu navegador
+**o** corre tu servidor local (según tu stack).
+
+---
+
+## 🖥️ **7. Uso del Sistema**
+
+Cuando el sistema está corriendo:
+
+1. El usuario inicia sesión.
+2. Accede a su panel o dashboard.
+3. Puede:
+
+   * Crear nuevos requerimientos.
+   * Ver la lista de requerimientos.
+   * Revisar el estado actual.
+4. El administrador entra a su panel donde puede gestionar todos los requerimientos:
+
+   * Editar
+   * Cambiar estado
+   * Eliminar
+5. Toda la información queda almacenada en la base de datos configurada.
+
+---
+
+## 🧑‍💼 **8. Roles del Sistema**
+
+### 👤 *Usuario (User):*
+
+* Envía requerimientos.
+* Consulta sus solicitudes.
+* Visualiza el estado actualizado.
+
+### 🛡️ *Administrador (Admin):*
+
+* Control total del sistema.
+* Gestiona todo el flujo de requerimientos.
+* Administra usuarios (si aplica).
+
+---
+
+## 🔮 **10. Futuras Mejoras**
+
+* Notificaciones por correo al actualizar un estado.
+* Módulo de reportes PDF o Excel.
+* Historial de cambios en cada requerimiento.
+* Roles extra (Supervisor, Mesa de ayuda, etc.)
+* Integración con APIs externas
+
+---
+
+## 👨‍💻 **11. Autor**
+
+Proyecto desarrollado por **Franshesco Paolo Gutiérrez Corilla**.
+Estudiante de Ingeniería de Software y entusiasta del desarrollo web.

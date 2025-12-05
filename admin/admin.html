@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDSR - DASHBOARD</title>
+    <link rel="icon" href="../imgs/LOGO_MUNICIPALIDAD.png" type="image/png">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="adr-header">
+        <div class="adr-header-content">
+            <!-- Logo, título y usuario juntos -->
+            <div class="adr-logo-section">
+                <img src="../imgs/LOGO_MUNICIPALIDAD.png" alt="Logo Municipalidad" class="adr-logo">
+                <div class="adr-title-group">
+                    <h1 class="adr-main-title">Municipalidad Distrital de San Ramón</h1>
+                    <p class="adr-subtitle">Bienvenido</p>
+                </div>
+            </div>
+
+            <!-- Botón hamburguesa -->
+            <button class="adr-hamburger" id="hamburgerBtn" aria-label="Menú">
+                <span class="adr-hamburger-line"></span>
+                <span class="adr-hamburger-line"></span>
+                <span class="adr-hamburger-line"></span>
+            </button>
+
+            <!-- Navegación (se mostrará como menú lateral en móvil) -->
+            <nav class="adr-nav" id="navMenu">
+                <a href="admin.html" class="adr-nav-link adr-active">DASHBOARD</a>
+                <a href="/request/requerimientos.html" class="adr-nav-link">REQUERIMIENTOS</a>
+                <a href="/flujograma/flujograma.html" class="adr-nav-link">FLUJOGRAMA</a>
+                <a href="/log/login.html" class="adr-nav-link adr-nav-salir">SALIR</a>
+            </nav>
+        </div>
+    </header>
+    <main class="adr-main-container">
+        <div class="adr-content-wrapper">
+            <section class="adr-summary-section">
+                <div class="adr-summary-card adr-total-card">
+                    <i class="fas fa-clipboard-list adr-card-icon"></i>
+                    <h2 class="adr-summary-title">TOTAL DE REQUERIMIENTOS</h2>
+                    <div class="adr-summary-number">0</div>
+                </div>
+
+                <div class="adr-summary-card adr-status-card">
+                    <div class="adr-status-item adr-pending">
+                        <i class="fas fa-clock"></i>
+                        <span class="adr-status-label">REQUERIMIENTOS PENDIENTES</span>
+                        <span class="adr-status-value">0</span>
+                    </div>
+                    <div class="adr-status-item adr-process">
+                        <i class="fas fa-spinner"></i>
+                        <span class="adr-status-label">REQUERIMIENTOS EN PROCESO</span>
+                        <span class="adr-status-value">0</span>
+                    </div>
+                    <div class="adr-status-item adr-completed">
+                        <i class="fas fa-check-circle"></i>
+                        <span class="adr-status-label">REQUERIMIENTOS FINALIZADOS</span>
+                        <span class="adr-status-value">0</span>
+                    </div>
+                </div>
+            </section>
+            <section class="adr-chart-section">
+                <div class="adr-chart-card">
+                    <h3 class="adr-chart-title">
+                        <i class="fas fa-chart-bar"></i>
+                        Requerimientos por Área
+                    </h3>
+                    <div class="adr-bar-chart">
+                        <div class="adr-bar-item">
+                            <div class="adr-bar-wrapper">
+                                <div class="adr-bar adr-bar-1" style="height: 80%;" data-value="8"></div>
+                            </div>
+                            <span class="adr-bar-label">Subgerencia de Catastro, Planeamiento y Control Urbano</span>
+                        </div>
+                        <div class="adr-bar-item">
+                            <div class="adr-bar-wrapper">
+                                <div class="adr-bar adr-bar-2" style="height: 60%;" data-value="6"></div>
+                            </div>
+                            <span class="adr-bar-label">Subgerencia de Maquinaria52</span>
+                        </div>
+                        <div class="adr-bar-item">
+                            <div class="adr-bar-wrapper">
+                                <div class="adr-bar adr-bar-3" style="height: 40%;" data-value="4"></div>
+                            </div>
+                            <span class="adr-bar-label">Subgerencia de Supervisión y Ejecución de Obras</span>
+                        </div>
+                        <div class="adr-bar-item">
+                            <div class="adr-bar-wrapper">
+                                <div class="adr-bar adr-bar-4" style="height: 75%;" data-value="7"></div>
+                            </div>
+                            <span class="adr-bar-label">Subgerencia de Medio Ambiente, Ecología, Saneamiento y
+                                Salubridad</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="adr-bottom-section">
+                <div class="adr-pie-card">
+                    <h3 class="adr-pie-title">
+                        <i class="fas fa-chart-pie"></i>
+                        Distribución por Categoría
+                    </h3>
+                    <div class="adr-pie-container">
+                        <svg class="adr-pie-chart" viewBox="0 0 200 200">
+                            <!-- Bienes 40% -->
+                            <circle class="adr-pie-segment adr-pie-bienes" cx="100" cy="100" r="80"
+                                stroke-dasharray="201 502" stroke-dashoffset="0"></circle>
+                            <!-- Servicios 32% -->
+                            <circle class="adr-pie-segment adr-pie-servicios" cx="100" cy="100" r="80"
+                                stroke-dasharray="161 502" stroke-dashoffset="-201"></circle>
+                            <!-- Obras 28% -->
+                            <circle class="adr-pie-segment adr-pie-obras" cx="100" cy="100" r="80"
+                                stroke-dasharray="141 502" stroke-dashoffset="-362"></circle>
+                        </svg>
+                        <div class="adr-pie-legend">
+                            <div class="adr-legend-item">
+                                <span class="adr-legend-color adr-legend-bienes"></span>
+                                <span class="adr-legend-label">Bienes <strong>40%</strong></span>
+                            </div>
+                            <div class="adr-legend-item">
+                                <span class="adr-legend-color adr-legend-servicios"></span>
+                                <span class="adr-legend-label">Servicios <strong>32%</strong></span>
+                            </div>
+                            <div class="adr-legend-item">
+                                <span class="adr-legend-color adr-legend-obras"></span>
+                                <span class="adr-legend-label">Obras <strong>28%</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adr-table-card">
+                    <h3 class="adr-table-title">
+                        <i class="fas fa-list"></i>
+                        ÚLTIMOS 5 REQUERIMIENTOS CREADOS
+                    </h3>
+                    <div class="adr-table-wrapper">
+                        <table class="adr-table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Área</th>
+                                    <th>Tipo</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label="Fecha">05/11/2025</td>
+                                    <td data-label="Área">Catastro</td>
+                                    <td data-label="Tipo">Bienes</td>
+                                    <td data-label="Estado"><span class="adr-badge adr-badge-pending">Pendiente</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Fecha">04/11/2025</td>
+                                    <td data-label="Área">Maquinaria</td>
+                                    <td data-label="Tipo">Servicios</td>
+                                    <td data-label="Estado"><span class="adr-badge adr-badge-process">En Proceso</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Fecha">03/11/2025</td>
+                                    <td data-label="Área">Obras</td>
+                                    <td data-label="Tipo">Obras</td>
+                                    <td data-label="Estado"><span
+                                            class="adr-badge adr-badge-completed">Finalizado</span></td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Fecha">02/11/2025</td>
+                                    <td data-label="Área">Medio Ambiente</td>
+                                    <td data-label="Tipo">Bienes</td>
+                                    <td data-label="Estado"><span class="adr-badge adr-badge-process">En Proceso</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Fecha">01/11/2025</td>
+                                    <td data-label="Área">Catastro</td>
+                                    <td data-label="Tipo">Servicios</td>
+                                    <td data-label="Estado"><span
+                                            class="adr-badge adr-badge-completed">Finalizado</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import {
+            getFirestore, collection, onSnapshot
+        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        // Configuración corregida
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-V6hfGyOETDNxJf8Stb9DujbxQTIM76c",
+            authDomain: "web-requerimientos.firebaseapp.com",
+            projectId: "web-requerimientos",
+            storageBucket: "web-requerimientos.appspot.com",
+            messagingSenderId: "707688130249",
+            appId: "1:707688130249:web:c46b6252c46083b6e9cf18",
+            measurementId: "G-TV2C27SXD3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // 🔒 Verifica sesión activa
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                document.querySelector('.adr-subtitle').textContent = `Hola, ${user.email}`;
+                cargarDatosTiempoReal();
+            } else {
+                window.location.href = "/log/login.html";
+            }
+        });
+        document.body.classList.add("loaded");
+        // Limpia los datos de ejemplo antes de cargar los reales
+        document.querySelector(".adr-summary-number").textContent = "—";
+        document.querySelectorAll(".adr-status-value").forEach(e => e.textContent = "—");
+        document.querySelector(".adr-bar-chart").innerHTML = "<p style='text-align:center;color:#777;'>Cargando datos...</p>";
+        document.querySelector(".adr-table tbody").innerHTML = "<tr><td colspan='4' style='text-align:center;'>Cargando...</td></tr>";
+
+        // 📡 Función para escuchar cambios en Firestore en tiempo real
+        function cargarDatosTiempoReal() {
+            const reqRef = collection(db, "requerimientos");
+            onSnapshot(reqRef, (snapshot) => {
+                let total = snapshot.size;
+                let pendientes = 0;
+                let proceso = 0;
+                let finalizados = 0;
+                let ultimos = [];
+                let conteoAreas = {}; // Para gráfico de barras
+                let conteoTipos = { Bienes: 0, Servicios: 0, Obras: 0 }; // Para gráfico de pastel
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+
+                    const estado = (data.estado || "").trim().toLowerCase();
+                    const tipo = (data.tipo || "").trim().toLowerCase();
+                    const area = (data.area || "Sin área")
+                        .trim()
+                        .toLowerCase()
+                        .replace(/\b\w/g, l => l.toUpperCase());
+
+                    // 🧮 Contadores por estado
+                    if (estado.includes("pendiente")) pendientes++;
+                    else if (estado.includes("proceso")) proceso++;
+                    else if (estado.includes("finalizado")) finalizados++;
+
+                    // 📊 Conteo por área
+                    conteoAreas[area] = (conteoAreas[area] || 0) + 1;
+
+                    // 🥧 Conteo por tipo
+                    if (tipo.includes("bien")) conteoTipos.Bienes++;
+                    else if (tipo.includes("servicio")) conteoTipos.Servicios++;
+                    else if (tipo.includes("obra")) conteoTipos.Obras++;
+
+                    // Guardar con ID y timestamp
+                    ultimos.push({
+                        ...data,
+                        docId: doc.id,
+                        timestamp: data.fechaCreacion?.toMillis?.() || 0
+                    });
+                });
+
+                // === 🧮 Actualizar totales ===
+                document.querySelector(".adr-summary-number").textContent = total;
+                document.querySelector(".adr-status-item.adr-pending .adr-status-value").textContent = pendientes;
+                document.querySelector(".adr-status-item.adr-process .adr-status-value").textContent = proceso;
+                document.querySelector(".adr-status-item.adr-completed .adr-status-value").textContent = finalizados;
+
+                // === 🕐 Tabla de últimos 5 requerimientos ===
+                // Ordenar por timestamp descendente (más reciente primero)
+                ultimos.sort((a, b) => b.timestamp - a.timestamp);
+
+                const tbody = document.querySelector(".adr-table tbody");
+                tbody.innerHTML = "";
+                ultimos.slice(0, 5).forEach(r => {
+                    const fila = `
+    <tr>
+        <td data-label="Fecha">${r.fecha}</td>
+        <td data-label="Área">${r.area}</td>
+        <td data-label="Tipo">${r.tipo}</td>
+        <td data-label="Estado">
+            <span class="adr-badge ${r.estado === "PENDIENTE"
+                            ? "adr-badge-pending"
+                            : r.estado === "EN PROCESO"
+                                ? "adr-badge-process"
+                                : "adr-badge-completed"}">${r.estado}</span>
+        </td>
+    </tr>`;
+                    tbody.innerHTML += fila;
+                });
+
+                // === 📊 Gráfico de barras (por área) ===
+                const barContainer = document.querySelector(".adr-bar-chart");
+                barContainer.innerHTML = "";
+
+                const areasOrdenadas = Object.entries(conteoAreas).sort((a, b) => b[1] - a[1]);
+                const max = Math.max(...areasOrdenadas.map(a => a[1]), 1);
+
+                areasOrdenadas.forEach(([area, cantidad], i) => {
+                    const altura = (cantidad / max) * 100;
+                    barContainer.innerHTML += `
+            <div class="adr-bar-item">
+                <div class="adr-bar-wrapper">
+                    <div class="adr-bar adr-bar-${i + 1}" style="height:${altura}%;" data-value="${cantidad}"></div>
+                </div>
+                <span class="adr-bar-label">${area}</span>
+            </div>`;
+                });
+
+                // === 🥧 Gráfico de pastel (por tipo) ===
+                const totalTipos = conteoTipos.Bienes + conteoTipos.Servicios + conteoTipos.Obras;
+                const circBienes = document.querySelector(".adr-pie-bienes");
+                const circServicios = document.querySelector(".adr-pie-servicios");
+                const circObras = document.querySelector(".adr-pie-obras");
+                const circ = 2 * Math.PI * 80;
+
+                let offset = 0;
+
+                // Calcular porcentajes con redondeo correcto
+                let porcentajeBienes = totalTipos ? Math.round((conteoTipos.Bienes / totalTipos) * 100) : 0;
+                let porcentajeServicios = totalTipos ? Math.round((conteoTipos.Servicios / totalTipos) * 100) : 0;
+                let porcentajeObras = totalTipos ? Math.round((conteoTipos.Obras / totalTipos) * 100) : 0;
+
+                // Ajustar para que sume exactamente 100%
+                const sumaTotal = porcentajeBienes + porcentajeServicios + porcentajeObras;
+                if (sumaTotal !== 100 && totalTipos > 0) {
+                    const diferencia = 100 - sumaTotal;
+                    // Ajustar el porcentaje más grande
+                    if (porcentajeBienes >= porcentajeServicios && porcentajeBienes >= porcentajeObras) {
+                        porcentajeBienes += diferencia;
+                    } else if (porcentajeServicios >= porcentajeObras) {
+                        porcentajeServicios += diferencia;
+                    } else {
+                        porcentajeObras += diferencia;
+                    }
+                }
+
+                circBienes.setAttribute("stroke-dasharray", `${(porcentajeBienes / 100) * circ} ${circ}`);
+                circBienes.setAttribute("stroke-dashoffset", offset);
+                offset -= (porcentajeBienes / 100) * circ;
+
+                circServicios.setAttribute("stroke-dasharray", `${(porcentajeServicios / 100) * circ} ${circ}`);
+                circServicios.setAttribute("stroke-dashoffset", offset);
+                offset -= (porcentajeServicios / 100) * circ;
+
+                circObras.setAttribute("stroke-dasharray", `${(porcentajeObras / 100) * circ} ${circ}`);
+                circObras.setAttribute("stroke-dashoffset", offset);
+
+                document.querySelector(".adr-legend-bienes").nextElementSibling.innerHTML =
+                    `Bienes <strong>${porcentajeBienes.toFixed(0)}%</strong>`;
+                document.querySelector(".adr-legend-servicios").nextElementSibling.innerHTML =
+                    `Servicios <strong>${porcentajeServicios.toFixed(0)}%</strong>`;
+                document.querySelector(".adr-legend-obras").nextElementSibling.innerHTML =
+                    `Obras <strong>${porcentajeObras.toFixed(0)}%</strong>`;
+            }, (err) => {
+                console.error("❌ Error al leer datos:", err.message);
+            });
+
+        }
+    </script>
+    <script type="module">
+        // ⚠️ EJECUTAR ESTE SCRIPT UNA SOLA VEZ EN LA CONSOLA DEL NAVEGADOR
+        // Abre admin/admin.html, presiona F12, ve a Console y pega este código
+
+        import { getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+        import { collection } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+        // Mapa de áreas
+        const areaToIdMap = {
+            "Subgerencia de Catastro, Planeamiento y Control Urbano": "catastro-planeamiento",
+            "Subgerencia de Maquinarias": "maquinarias",
+            "Subgerencia de Supervisión y Ejecución de Obras": "supervision-obras",
+            "Subgerencia de Medio Ambiente, Ecología, Saneamiento y Salubridad": "medio-ambiente",
+            "Subgerencia de Mercados y Cementerios": "mercados-cementerios",
+            "Subgerencia de Transporte, Tránsito y Circulación Vial": "transporte-transito",
+            "Subgerencia de Seguridad Ciudadana": "seguridad-ciudadana",
+            "Subgerencia de Educación, Cultura, Deportes y Recreación": "educacion-cultura",
+            "Subgerencia de Defensoría Municipal del Niño y Adolescente": "defensoria-nino",
+            "Subgerencia Municipal Persona con Discapacidad": "discapacidad",
+            "Subgerencia de Participación Vecinal y Organizaciones Sociales": "participacion-vecinal",
+            "Subgerencia de Desarrollo Turístico y Promoción Empresarial PYMES": "turismo-pymes",
+            "Subgerencia de Proyectos Agropecuarios": "proyectos-agropecuarios",
+            "Programa del Vaso de Leche": "vaso-de-leche",
+            "Programa PAN-TBC": "pan-tbc",
+            "Unidad de Agua y Alcantarillado": "agua-alcantarillado",
+            "Agencias Municipales": "agencias-municipales",
+            "Subgerencia de Abastecimiento": "abastecimiento",
+            "Subgerencia de Contabilidad": "contabilidad",
+            "Subgerencia de Tesorería": "tesoreria",
+            "Subgerencia de Personal": "personal",
+            "Subgerencia de Control Patrimonial": "control-patrimonial",
+            "Subgerencia de Recaudación y Control": "recaudacion-control",
+            "Subgerencia de Fiscalización Tributaria": "fiscalizacion-tributaria",
+            "Subgerencia de Ejecución Coactiva": "ejecucion-coactiva",
+            "Subgerencia de Comercialización, Comercio Ambulatorio y Feria": "comercializacion",
+            "Oficina de Asesoría Jurídica": "asesoria-juridica",
+            "Oficina de Planeamiento, Presupuesto y Racionalización": "planeamiento-presupuesto",
+            "Oficina de Tecnología": "tecnologia",
+            "Oficina de Secretaría General": "secretaria-general",
+            "Unidad Trámite Documentario": "tramite-documentario",
+            "Unidad de Archivo Central": "archivo-central",
+            "Unidad de Orientación a la Ciudadanía": "orientacion-ciudadania"
+        };
+
+        async function migrarAreaIds() {
+            console.log("🚀 Iniciando migración de areaId...");
+
+            // Usa la referencia global de Firebase que ya existe en admin.html
+            const reqRef = collection(window.db || db, "requerimientos");
+
+            try {
+                const snapshot = await getDocs(reqRef);
+                let actualizados = 0;
+                let errores = 0;
+
+                for (const docu of snapshot.docs) {
+                    const data = docu.data();
+                    const nombreArea = data.area || "";
+
+                    // Buscar el areaId correspondiente
+                    const areaId = areaToIdMap[nombreArea];
+
+                    if (areaId) {
+                        try {
+                            await updateDoc(doc(reqRef, docu.id), {
+                                areaId: areaId
+                            });
+                            console.log(`✅ ${docu.id}: ${nombreArea} → ${areaId}`);
+                            actualizados++;
+                        } catch (e) {
+                            console.error(`❌ Error en ${docu.id}:`, e);
+                            errores++;
+                        }
+                    } else {
+                        console.warn(`⚠️ Sin mapeo para: "${nombreArea}"`);
+                    }
+                }
+
+                console.log(`\n✨ Migración completada:`);
+                console.log(`   Actualizados: ${actualizados}`);
+                console.log(`   Errores: ${errores}`);
+                console.log(`   Total: ${snapshot.size}`);
+
+            } catch (error) {
+                console.error("❌ Error en migración:", error);
+            }
+        }
+        // EJECUTAR LA MIGRACIÓN
+        migrarAreaIds();
+    </script>
+    <script>
+        // Scroll al inicio al cargar
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        });
+
+        // Scroll al inicio al mostrar modales
+        document.addEventListener('DOMContentLoaded', () => {
+            const modals = document.querySelectorAll('.modal-overlay, .adr-modal');
+            modals.forEach(modal => {
+                const observer = new MutationObserver(() => {
+                    if (modal.classList.contains('active')) {
+                        const modalContent = modal.querySelector('.modal-content, .create-modal, .detail-modal');
+                        if (modalContent) {
+                            modalContent.scrollTop = 0;
+                        }
+                    }
+                });
+                observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+            });
+        });
+    </script>
+    <!-- Overlay (ÚNICO) -->
+    <div class="adr-menu-overlay" id="menuOverlay"></div>
+
+    <!-- JavaScript del menú (ÚNICO) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const nav = document.getElementById('navMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const body = document.body;
+
+            function toggleMenu() {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+                overlay.classList.toggle('active');
+                body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+            }
+
+            function closeMenu() {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
+                body.style.overflow = '';
+            }
+
+            // Abrir/cerrar menú
+            if (hamburger) hamburger.addEventListener('click', toggleMenu);
+
+            // Cerrar con overlay
+            if (overlay) overlay.addEventListener('click', closeMenu);
+
+            // Cerrar al hacer clic en un enlace
+            const navLinks = document.querySelectorAll('.adr-nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Cerrar con tecla ESC
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && nav.classList.contains('active')) {
+                    closeMenu();
+                }
+            });
+
+            // Cerrar si cambias a desktop
+            let resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    if (window.innerWidth > 768 && nav.classList.contains('active')) {
+                        closeMenu();
+                    }
+                }, 250);
+            });
+        });
+    </script>
+</body>
+
+</html>

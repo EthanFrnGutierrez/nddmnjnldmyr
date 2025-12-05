@@ -1,0 +1,256 @@
+/* ==========================================
+   FLUJOGRAMA - ESTILOS IMAGEN
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   CONTENEDOR DE LA IMAGEN
+   ========================================== */
+
+.flj-image-container {
+    margin-top: 5.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.flj-image {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.flj-image:hover {
+    transform: scale(1.02);
+}
+
+/* ==========================================
+   ANIMACIÓN DE ENTRADA
+   ========================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.flj-image {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ==========================================
+   MEDIA QUERIES - RESPONSIVE DESIGN
+   ========================================== */
+
+/* Teléfonos pequeños (≤ 360px) */
+@media (max-width: 360px) {
+    .flj-image-container {
+        margin-top: 4rem;
+        padding: 1rem 0.5rem;
+    }
+
+    .flj-image {
+        max-width: 95%;
+        border-radius: 6px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+    }
+}
+
+/* Teléfonos medianos (361px – 480px) */
+@media (min-width: 361px) and (max-width: 480px) {
+    .flj-image-container {
+        margin-top: 4.5rem;
+        padding: 1.5rem 0.75rem;
+    }
+
+    .flj-image {
+        max-width: 96%;
+        border-radius: 7px;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+    }
+}
+
+/* Teléfonos grandes (481px – 600px) */
+@media (min-width: 481px) and (max-width: 600px) {
+    .flj-image-container {
+        margin-top: 5rem;
+        padding: 1.5rem 0.875rem;
+    }
+
+    .flj-image {
+        max-width: 96%;
+        border-radius: 8px;
+        box-shadow: 0 7px 30px rgba(0, 0, 0, 0.13);
+    }
+}
+
+/* Tablets pequeñas (601px – 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+    .flj-image-container {
+        margin-top: 4.25rem !important;
+        padding: 2rem 1rem;
+    }
+
+    .flj-image {
+        max-width: 95%;
+        border-radius: 9px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+    }
+
+    .flj-image:hover {
+        transform: scale(1.015);
+    }
+}
+
+/* Tablets medianas (769px – 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .flj-image-container {
+        margin-top: 6.5rem !important;
+        padding: 2rem 1.25rem;
+    }
+
+    .flj-image {
+        max-width: 95%;
+        border-radius: 9px;
+        box-shadow: 0 9px 35px rgba(0, 0, 0, 0.14);
+    }
+
+    .flj-image:hover {
+        transform: scale(1.018);
+    }
+}
+
+/* Tablets grandes (993px – 1200px) */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .flj-image-container {
+        margin-top: 5.5rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .flj-image {
+        max-width: 96%;
+        border-radius: 10px;
+        box-shadow: 0 9px 38px rgba(0, 0, 0, 0.15);
+    }
+
+    .flj-image:hover {
+        transform: scale(1.02);
+    }
+}
+
+/* Laptops pequeñas (1201px – 1366px) */
+@media (min-width: 1201px) and (max-width: 1366px) {
+    .flj-image-container {
+        margin-top: 5.5rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .flj-image {
+        max-width: 96%;
+        border-radius: 10px;
+        box-shadow: 0 10px 38px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Laptops estándar (1367px – 1600px) */
+@media (min-width: 1367px) and (max-width: 1600px) {
+    .flj-image-container {
+        margin-top: 5.5rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .flj-image {
+        max-width: 97%;
+        border-radius: 10px;
+    }
+}
+
+/* Monitores grandes (1601px – 1920px) */
+@media (min-width: 1601px) and (max-width: 1920px) {
+    .flj-image-container {
+        margin-top: 6.5rem !important;
+        padding: 2rem 1.5rem;
+    }
+
+    .flj-image {
+        max-width: 97%;
+        border-radius: 10px;
+    }
+}
+
+/* Monitores muy grandes (≥ 1921px) */
+@media (min-width: 1921px) {
+    .flj-image-container {
+        margin-top: 7.8rem !important;
+        padding: 2.5rem 2rem;
+    }
+
+    .flj-image {
+        max-width: 95%;
+        border-radius: 12px;
+    }
+}
+
+/* ==========================================
+   MODO LANDSCAPE EN MÓVILES Y TABLETS
+   ========================================== */
+
+/* Landscape en móviles y tablets pequeñas */
+@media (max-width: 768px) and (orientation: landscape) {
+    .flj-image-container {
+        margin-top: 3.5rem;
+        padding: 1rem 0.5rem;
+    }
+
+    .flj-image {
+        max-width: 98%;
+    }
+}
+
+/* Landscape para tablets medianas */
+@media (min-width: 769px) and (max-width: 992px) and (orientation: landscape) {
+    .flj-image-container {
+        margin-top: 4rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .flj-image {
+        max-width: 96%;
+    }
+}
+
+/* ==========================================
+   OPTIMIZACIÓN PARA PANTALLAS TÁCTILES
+   ========================================== */
+
+@media (hover: none) and (pointer: coarse) {
+    .flj-image:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/imgs/LOGO_MUNICIPALIDAD.png">
+    <title>MDSR - AREAS</title>
+    <link rel="stylesheet" href="areas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="adr-header">
+        <div class="adr-header-content">
+            <button class="back-btn" id="backBtn">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="adr-logo-section">
+                <img src="/imgs/LOGO_MUNICIPALIDAD.png" alt="Logo Municipalidad" class="adr-logo">
+                <div class="adr-title-group">
+                    <h1 class="adr-main-title">MDSR</h1>
+                    <p class="adr-subtitle"></p>
+                </div>
+            </div>
+            <h2 class="area-name" id="areaName">Cargando área...</h2>
+            <nav class="adr-nav">
+                <a href="/log/login.html" class="adr-nav-link adr-nav-salir">SALIR</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <button class="create-btn" id="createBtn">
+                <i class="fas fa-plus-circle"></i>
+                Crear Requerimiento
+            </button>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar requerimiento...">
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTAINER -->
+    <main class="area-main-container">
+        <div class="area-requirements-grid" id="requirementsGrid">
+            <!-- Los requerimientos se cargarán dinámicamente -->
+        </div>
+
+        <div class="area-no-data" id="noData" style="display: none;">
+            <i class="fas fa-inbox"></i>
+            <h3>No hay requerimientos</h3>
+            <p>Aún no has creado requerimientos en esta área</p>
+        </div>
+    </main>
+
+    <!-- MODAL CREAR/EDITAR -->
+    <div class="modal-overlay" id="createModal">
+        <div class="create-modal">
+            <div class="modal-header">
+                <h2 id="modalFormTitle">Crear Nuevo Requerimiento</h2>
+                <button class="modal-close" id="closeCreateModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="requirementForm">
+                    <div class="form-group">
+                        <label>Título</label>
+                        <input type="text" id="formTitulo" placeholder="Ej: Reparación de vía pública" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <input type="date" id="formFecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        <select id="formTipo" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="BIEN">BIEN</option>
+                            <option value="SERVICIO">SERVICIO</option>
+                            <option value="OBRA">OBRA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Monto (S/.)</label>
+                        <input type="number" id="formMonto" step="0.01" min="0" placeholder="0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea id="formDescripcion" placeholder="Describe detalladamente el requerimiento..."
+                            required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-file-pdf"></i> Adjuntar PDFs (Opcional)
+                        </label>
+                        <input type="file" id="formPdfs" accept=".pdf" multiple class="form-file-input">
+                        <div class="file-preview" id="filePreview"></div>
+                        <p class="file-help-text">⚠️ Máximo 3 PDFs de 1.5MB cada uno (Total: 4MB). Si tus archivos son
+                            muy grandes, comprime en <a href="https://smallpdf.com/es/comprimir-pdf" target="_blank"
+                                style="color: #3b82f6; text-decoration: underline;">SmallPDF</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-cancel" id="cancelFormBtn">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+                <button class="btn btn-save" id="saveFormBtn">
+                    <i class="fas fa-save"></i>
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DETALLE -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="detail-modal">
+            <div class="detail-main">
+                <div class="modal-header">
+                    <h2 id="detailTitle">Título del Requerimiento</h2>
+                    <button class="modal-close" id="closeDetailModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-info-group">
+                        <div class="detail-info-item">
+                            <span class="detail-label">Fecha</span>
+                            <span class="detail-value" id="detailFecha">-</span>
+                        </div>
+                        <div class="detail-info-item">
+                            <span class="detail-label">Tipo</span>
+                            <span class="detail-value" id="detailTipo">-</span>
+                        </div>
+                        <div class="detail-info-item">
+                            <span class="detail-label">Estado</span>
+                            <span class="detail-value" id="detailEstado">
+                                <span class="adr-estado-badge" id="detailEstadoBadge">-</span>
+                            </span>
+                        </div>
+                        <div class="detail-info-item">
+                            <span class="detail-label">Presupuesto</span>
+                            <span class="detail-value" id="detailMonto">S/. 0.00</span>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3 class="detail-section-title">
+                            <i class="fas fa-file-alt"></i>
+                            Descripción
+                        </h3>
+                        <p class="detail-section-content" id="detailDescripcion">-</p>
+                    </div>
+                    <div class="detail-section">
+                        <h3 class="detail-section-title">
+                            <i class="fas fa-building"></i>
+                            Área Responsable
+                        </h3>
+                        <p class="detail-section-content" id="detailArea">-</p>
+                    </div>
+                    <!-- 🔹 NUEVA SECCIÓN PARA PDFs -->
+                    <div class="detail-section" id="pdfSection" style="display: none;">
+                        <h3 class="detail-section-title">
+                            <i class="fas fa-file-pdf"></i>
+                            Archivos Adjuntos
+                        </h3>
+                        <div class="detail-pdfs-container" id="detailPdfs">
+                            <!-- Los PDFs se cargarán aquí -->
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-actions">
+                    <!--<button class="action-btn action-btn-view" id="viewStatusBtn">
+                        <i class="fas fa-eye"></i>
+                        <span>Ver Estado</span>
+                    </button>-->
+                    <button class="action-btn action-btn-edit" id="editBtn">
+                        <i class="fas fa-edit"></i>
+                        <span>Editar</span>
+                    </button>
+                    <button class="action-btn action-btn-delete" id="deleteBtn">
+                        <i class="fas fa-trash"></i>
+                        <span>Eliminar</span>
+                    </button>
+                </div>
+            </div>
+            <div class="detail-sidebar">
+                <h3 class="comments-title">
+                    <i class="fas fa-comments"></i>
+                    Comentarios
+                </h3>
+                <div id="commentsContainer">
+                    <div class="no-comments">
+                        <i class="fas fa-comment-slash"></i>
+                        <p>No hay comentarios</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL VISOR DE PDF -->
+    <div class="pdf-viewer-modal" id="pdfViewerModal">
+        <div class="pdf-viewer-container">
+            <div class="pdf-viewer-header">
+                <div class="pdf-viewer-title">
+                    <i class="fas fa-file-pdf"></i>
+                    <span id="pdfViewerFileName">Visualizador de PDF</span>
+                </div>
+                <button class="pdf-viewer-close" id="closePdfViewer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="pdf-viewer-content">
+                <iframe id="pdfViewerIframe" class="pdf-viewer-iframe"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import {
+            getFirestore, collection, onSnapshot
+        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        // 🔹 AGREGAR STORAGE
+        import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+
+        // Configuración corregida
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-V6hfGyOETDNxJf8Stb9DujbxQTIM76c",
+            authDomain: "web-requerimientos.firebaseapp.com",
+            projectId: "web-requerimientos",
+            storageBucket: "web-requerimientos.appspot.com",
+            messagingSenderId: "707688130249",
+            appId: "1:707688130249:web:c46b6252c46083b6e9cf18",
+            measurementId: "G-TV2C27SXD3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const storage = getStorage(app); // 🔹 INICIALIZAR STORAGE
+
+        // Exportar storage globalmente
+        window.storage = storage;
+
+        // 🔒 Verifica sesión activa
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                document.querySelector('.adr-subtitle').textContent = `Hola, ${user.email}`;
+            } else {
+                window.location.href = "/log/login.html";
+            }
+        });
+    </script>
+    <script type="module" src="/user/areas/areas.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const modals = document.querySelectorAll('.modal-overlay, .adr-modal');
+            modals.forEach(modal => {
+                const observer = new MutationObserver(() => {
+                    if (modal.classList.contains('active')) {
+                        const modalContent = modal.querySelector('.modal-content, .create-modal, .detail-modal');
+                        if (modalContent) {
+                            modalContent.scrollTop = 0;
+                        }
+                    }
+                });
+                observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

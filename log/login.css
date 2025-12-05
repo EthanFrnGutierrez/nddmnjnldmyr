@@ -1,0 +1,1469 @@
+/* ========================================
+   RESET Y CONFIGURACIÓN BASE
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colores principales basados en la paleta de San Ramón */
+    --color-primary: #2563eb;
+    --color-primary-light: #3b82f6;
+    --color-primary-dark: #1e40af;
+    --color-secondary: #f59e0b;
+    --color-secondary-light: #fbbf24;
+    --color-accent: #10b981;
+
+    /* Colores neutros */
+    --color-white: #ffffff;
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* Espaciados */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Bordes redondeados */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    /* Transiciones */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--color-gray-800);
+    overflow-x: hidden;
+}
+
+
+/* ========================================
+   CONTENEDOR PRINCIPAL Y LAYOUT
+   ======================================== */
+
+.ai-main-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#1e40af, #3b82f6);
+    background-size: 400% 400%;
+    animation: ai-gradient-shift 15s ease infinite;
+    padding: 0 var(--spacing-md);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animación del fondo degradado */
+@keyframes ai-gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Efecto de partículas decorativas en el fondo */
+.ai-main-container::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 50%);
+    animation: ai-float 20s ease-in-out infinite;
+}
+
+@keyframes ai-float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    33% {
+        transform: translate(50px, -50px) rotate(120deg);
+    }
+
+    66% {
+        transform: translate(-50px, 50px) rotate(240deg);
+    }
+}
+
+.ai-content-wrapper {
+    width: 50%;
+    max-width: 65rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl), 0 0 50px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem !important;
+    position: relative;
+    z-index: 1;
+    animation: ai-fade-in 0.6s ease-out;
+}
+
+@keyframes ai-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ========================================
+   HEADER - LOGO Y TÍTULO
+   ======================================== */
+.ai-header {
+    display: flex;
+    flex-direction: row;
+    /* Cambio a row para colocar elementos en horizontal */
+    justify-content: center;
+    /* Distribuye el espacio entre los elementos */
+    align-items: center;
+    /* Centra los elementos verticalmente */
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+
+.ai-logo-container {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+    animation: ai-logo-pulse 3s ease-in-out infinite;
+    transition: transform var(--transition-normal);
+}
+
+.ai-logo-img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes ai-logo-pulse {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+    }
+
+    50% {
+        filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.25));
+    }
+}
+
+.ai-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.ai-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gray-800);
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+}
+
+.ai-title-highlight {
+    color: var(--color-accent);
+    display: block;
+    font-size: 1.75rem;
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ai-welcome {
+    font-size: 1.25rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+    animation: ai-welcome-bounce 2s ease-in-out infinite;
+}
+
+@keyframes ai-welcome-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+
+/* ========================================
+   ILUSTRACIÓN DECORATIVA DE PERSONAS
+   ======================================== */
+
+.ai-illustration-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    width: 100%;
+    max-width: 100rem;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: repeat(3fr, 1fr);
+}
+
+.ai-illustration-img {
+    width: 100%;
+    height: auto;
+    max-height: 20rem;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.1));
+    animation: ai-illustration-float 4s ease-in-out infinite;
+}
+
+@keyframes ai-illustration-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* ========================================
+   TARJETA DE INICIO DE SESIÓN
+   ======================================== */
+
+.ai-login-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-gray-200);
+    transition: all var(--transition-normal);
+}
+
+.ai-login-card:hover {
+    box-shadow: var(--shadow-xl), 0 0 30px rgba(37, 99, 235, 0.15);
+    border-color: var(--color-primary-light);
+}
+
+.ai-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ai-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.ai-form-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+    transition: color var(--transition-fast);
+}
+
+.ai-form-group:focus-within .ai-form-label {
+    color: var(--color-primary);
+}
+
+.ai-icon-small {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke-width: 2;
+}
+
+.ai-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ai-input-icon {
+    position: absolute;
+    left: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-gray-400);
+    stroke-width: 2;
+    transition: color var(--transition-fast);
+    pointer-events: none;
+}
+
+.ai-input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 3rem;
+    border: 2px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    color: var(--color-gray-800);
+    background: var(--color-gray-50);
+    transition: all var(--transition-fast);
+    outline: none;
+}
+
+.ai-input::placeholder {
+    color: var(--color-gray-400);
+}
+
+.ai-input:focus {
+    border-color: var(--color-primary);
+    background: var(--color-white);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.ai-input:focus+.ai-input-icon {
+    color: var(--color-primary);
+}
+
+.ai-input-wrapper:focus-within .ai-input-icon {
+    color: var(--color-primary);
+}
+
+.ai-toggle-password {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-400);
+    transition: color var(--transition-fast);
+    border-radius: var(--radius-sm);
+}
+
+.ai-toggle-password:hover {
+    color: var(--color-primary);
+    background: var(--color-gray-100);
+}
+
+.ai-icon-toggle {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke-width: 2;
+}
+
+
+/* ========================================
+   BOTONES
+   ======================================== */
+
+.ai-btn-primary {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(37, 99, 235, 0.3);
+    transition: all var(--transition-normal);
+    margin-top: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.ai-btn-primary:hover::before {
+    left: 100%;
+}
+
+.ai-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(37, 99, 235, 0.5);
+}
+
+.ai-btn-primary:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
+}
+
+.ai-btn-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke-width: 2.5;
+}
+
+
+/* ========================================
+   ENLACES Y RECUPERACIÓN DE CONTRASEÑA
+   ======================================== */
+
+.ai-forgot-password {
+    text-align: center;
+    margin-top: 0;
+}
+
+.ai-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.ai-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: all var(--transition-normal);
+    transform: translateX(-50%);
+}
+
+.ai-link:hover::after {
+    width: 100%;
+}
+
+.ai-link:hover {
+    color: var(--color-primary-dark);
+    background: var(--color-gray-100);
+}
+
+.ai-icon-tiny {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2;
+}
+
+
+/* ========================================
+   FOOTER - INFORMACIÓN ADICIONAL
+   ======================================== */
+
+.ai-footer {
+    padding-top: var(--spacing-lg);
+    border-top: 2px solid var(--color-gray-200);
+}
+
+.ai-footer-icons {
+    display: flex;
+    justify-content: space-around;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.ai-footer-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.ai-footer-icon-item:hover {
+    background: var(--color-gray-100);
+    transform: translateY(-5px);
+}
+
+.ai-footer-icon-item span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
+}
+
+.ai-icon-footer {
+    width: 2rem;
+    height: 2rem;
+    color: var(--color-primary);
+    stroke-width: 2;
+    transition: all var(--transition-fast);
+}
+
+.ai-footer-icon-item:hover .ai-icon-footer {
+    color: var(--color-primary-dark);
+    transform: scale(1.2);
+}
+
+
+/* ========================================
+   MEDIA QUERIES - DISEÑO RESPONSIVE
+   ======================================== */
+
+/* Tablets y pantallas medianas (max-width: 768px) */
+@media (max-width: 768px) {
+    .ai-content-wrapper {
+        width: 95%;
+        padding: var(--spacing-lg);
+    }
+
+    .ai-title {
+        font-size: 1.25rem;
+    }
+
+    .ai-title-highlight {
+        font-size: 1.5rem;
+    }
+
+    .ai-welcome {
+        font-size: 1.1rem;
+    }
+
+    .ai-logo-container {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .ai-illustration-img {
+        max-height: 16rem;
+    }
+
+    .ai-login-card {
+        padding: var(--spacing-lg);
+    }
+
+    .ai-btn-primary {
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+    }
+}
+
+/* Móviles (max-width: 480px) */
+@media (max-width: 480px) {
+    .ai-main-container {
+        padding: var(--spacing-sm);
+    }
+
+    .ai-content-wrapper {
+        width: 95%;
+        padding: var(--spacing-md);
+        border-radius: var(--radius-lg);
+    }
+
+    .ai-header {
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .ai-title {
+        font-size: 1.1rem;
+    }
+
+    .ai-title-highlight {
+        font-size: 1.3rem;
+    }
+
+    .ai-welcome {
+        font-size: 1rem;
+    }
+
+    .ai-logo-container {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .ai-illustration-img {
+        max-height: 14rem;
+    }
+
+    .ai-login-card {
+        padding: var(--spacing-md);
+    }
+
+    .ai-form {
+        gap: var(--spacing-sm);
+    }
+
+    .ai-input {
+        padding: 0.75rem 0.875rem 0.75rem 2.75rem;
+        font-size: 0.95rem;
+    }
+
+    .ai-btn-primary {
+        font-size: 0.95rem;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .ai-btn-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
+
+/* Pantallas muy pequeñas (max-width: 360px) */
+@media (max-width: 360px) {
+    .ai-content-wrapper {
+        padding: var(--spacing-sm);
+    }
+
+    .ai-title {
+        font-size: 1rem;
+    }
+
+    .ai-title-highlight {
+        font-size: 1.2rem;
+    }
+
+    .ai-logo-container {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .ai-illustration-img {
+        max-height: 12rem;
+    }
+}
+
+/* Pantallas grandes (min-width: 1200px) */
+@media (min-width: 1200px) {
+    .ai-content-wrapper {
+        max-width: 80rem;
+        padding: var(--spacing-xl) 4rem;
+    }
+
+    .ai-title {
+        font-size: 1.75rem;
+    }
+
+    .ai-title-highlight {
+        font-size: 2rem;
+    }
+
+    .ai-welcome {
+        font-size: 1.5rem;
+    }
+
+    .ai-login-card {
+        max-width: 35rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* ========================================
+   ANIMACIONES Y TRANSICIONES ADICIONALES
+   ======================================== */
+
+/* Animación de entrada para elementos del formulario */
+.ai-form-group {
+    animation: ai-slide-in 0.4s ease-out;
+    animation-fill-mode: both;
+}
+
+.ai-form-group:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.ai-form-group:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.ai-btn-primary {
+    animation: ai-slide-in 0.4s ease-out 0.3s;
+    animation-fill-mode: both;
+}
+
+.ai-forgot-password {
+    animation: ai-slide-in 0.4s ease-out 0.4s;
+    animation-fill-mode: both;
+}
+
+@keyframes ai-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto de resplandor en inputs al hacer focus */
+.ai-input:focus {
+    animation: ai-input-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes ai-input-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.2);
+    }
+}
+
+/* Efecto de carga del botón (opcional para cuando se envíe el formulario) */
+.ai-btn-primary.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.ai-btn-primary.loading::after {
+    content: '';
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid var(--color-white);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: ai-spin 0.8s linear infinite;
+}
+
+@keyframes ai-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ========================================
+   UTILIDADES Y ESTADOS
+   ======================================== */
+
+/* Estado de error en inputs */
+.ai-input.error {
+    border-color: #ef4444;
+    background: #fef2f2;
+}
+
+.ai-input.error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Estado de éxito en inputs */
+.ai-input.success {
+    border-color: var(--color-accent);
+    background: #f0fdf4;
+}
+
+.ai-input.success:focus {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Accesibilidad - mejorar foco para navegación por teclado */
+*:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+button:focus-visible {
+    outline-offset: 4px;
+}
+
+/* Desactivar animaciones para usuarios que prefieren movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ========================================
+   MEDIA QUERIES - DISEÑO RESPONSIVE COMPLETO
+   ======================================== */
+
+/* Teléfonos pequeños (≤ 360px) */
+@media (max-width: 360px) {
+    .ai-main-container {
+        padding: 0.5rem;
+    }
+
+    .ai-content-wrapper {
+        width: 100%;
+        padding: 1rem !important;
+        border-radius: 1rem;
+        max-width: 100%;
+    }
+
+    .ai-header {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 0.51rem;
+        text-align: center;
+    }
+
+    .ai-logo-container {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+
+    .ai-header-text {
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .ai-title {
+        font-size: 0.875rem;
+        text-align: center;
+    }
+
+    .ai-title-highlight {
+        font-size: 1rem;
+    }
+
+    .ai-welcome {
+        font-size: 0.875rem;
+    }
+
+    .ai-illustration-container {
+        margin-bottom: 1rem;
+    }
+
+    .ai-illustration-img {
+        max-height: 10rem;
+    }
+
+    .ai-login-card {
+        padding: 1rem;
+        border-radius: 0.75rem;
+    }
+
+    .ai-form {
+        gap: 0.75rem;
+    }
+
+    .ai-form-label {
+        font-size: 0.8125rem;
+    }
+
+    .ai-icon-small {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .ai-input {
+        padding: 0.625rem 0.75rem 0.625rem 2.5rem;
+        font-size: 0.875rem;
+    }
+
+    .ai-input-icon {
+        left: 0.75rem;
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .ai-toggle-password {
+        right: 0.75rem;
+        padding: 0.375rem;
+    }
+
+    .ai-icon-toggle {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .ai-btn-primary {
+        padding: 0.625rem 1rem;
+        font-size: 0.875rem;
+        gap: 0.375rem;
+    }
+
+    .ai-btn-icon {
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+    .ai-forgot-password {
+        margin-top: 0.5rem;
+    }
+
+    .ai-link {
+        font-size: 0.8125rem;
+        padding: 0.375rem;
+    }
+
+    .ai-icon-tiny {
+        width: 0.875rem;
+        height: 0.875rem;
+    }
+
+    .ai-footer {
+        padding-top: 1rem;
+    }
+
+    .ai-footer-icons {
+        gap: 0.5rem;
+    }
+
+    .ai-footer-icon-item {
+        padding: 0.5rem;
+        gap: 0.25rem;
+    }
+
+    .ai-footer-icon-item span {
+        font-size: 0.75rem;
+    }
+
+    .ai-icon-footer {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+}
+
+/* Teléfonos medianos - grandes (361px – 600px) */
+@media (min-width: 361px) and (max-width: 600px) {
+    .ai-main-container {
+        padding: 0.75rem;
+    }
+
+    .ai-content-wrapper {
+        width: 95%;
+        padding: 1.25rem !important;
+        border-radius: 1.25rem;
+    }
+
+    .ai-header {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+        text-align: center;
+    }
+
+    .ai-logo-container {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .ai-header-text {
+        align-items: center;
+        gap: 0.375rem;
+    }
+
+    .ai-title {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .ai-title-highlight {
+        font-size: 1.25rem;
+    }
+
+    .ai-welcome {
+        font-size: 1rem;
+    }
+
+    .ai-illustration-container {
+        margin-bottom: 1.25rem;
+    }
+
+    .ai-illustration-img {
+        max-height: 13rem;
+    }
+
+    .ai-login-card {
+        padding: 1.25rem;
+        border-radius: 0.875rem;
+    }
+
+    .ai-form {
+        gap: 0.875rem;
+    }
+
+    .ai-form-label {
+        font-size: 0.9375rem;
+    }
+
+    .ai-input {
+        padding: 0.75rem 0.875rem 0.75rem 2.75rem;
+        font-size: 0.9375rem;
+    }
+
+    .ai-input-icon {
+        left: 0.875rem;
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+    .ai-toggle-password {
+        right: 0.875rem;
+    }
+
+    .ai-icon-toggle {
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+    .ai-btn-primary {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9375rem;
+        gap: 0.5rem;
+    }
+
+    .ai-btn-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .ai-link {
+        font-size: 0.9375rem;
+    }
+
+    .ai-footer {
+        padding-top: 1.25rem;
+    }
+
+    .ai-footer-icons {
+        gap: 0.75rem;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .ai-footer-icon-item {
+        padding: 0.625rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .ai-footer-icon-item span {
+        font-size: 0.8125rem;
+    }
+
+    .ai-icon-footer {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+}
+
+/* Laptops pequeñas - estándar (1201px – 1600px) */
+@media (min-width: 1201px) and (max-width: 1600px) {
+    .ai-content-wrapper {
+        width: 55%;
+        max-width: 70rem;
+        padding: 2.5rem 3rem !important;
+    }
+
+    .ai-header {
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .ai-logo-container {
+        width: 11rem;
+        height: 11rem;
+    }
+
+    .ai-title {
+        font-size: 1.625rem;
+    }
+
+    .ai-title-highlight {
+        font-size: 1.875rem;
+    }
+
+    .ai-welcome {
+        font-size: 1.375rem;
+    }
+
+    .ai-illustration-container {
+        margin-bottom: 2.5rem;
+        max-width: 50rem;
+    }
+
+    .ai-illustration-img {
+        max-height: 22rem;
+    }
+
+    .ai-login-card {
+        max-width: 38rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2.25rem;
+    }
+
+    .ai-form {
+        gap: 1.5rem;
+    }
+
+    .ai-form-label {
+        font-size: 1rem;
+    }
+
+    .ai-icon-small {
+        width: 1.375rem;
+        height: 1.375rem;
+    }
+
+    .ai-input {
+        padding: 1rem 1.125rem 1rem 3.25rem;
+        font-size: 1.0625rem;
+    }
+
+    .ai-input-icon {
+        left: 1.125rem;
+        width: 1.375rem;
+        height: 1.375rem;
+    }
+
+    .ai-toggle-password {
+        right: 1.125rem;
+    }
+
+    .ai-icon-toggle {
+        width: 1.375rem;
+        height: 1.375rem;
+    }
+
+    .ai-btn-primary {
+        padding: 1.125rem 2.25rem;
+        font-size: 1.125rem;
+    }
+
+    .ai-btn-icon {
+        width: 1.625rem;
+        height: 1.625rem;
+    }
+
+    .ai-link {
+        font-size: 1rem;
+    }
+
+    .ai-footer {
+        padding-top: 2.5rem;
+    }
+
+    .ai-footer-icons {
+        gap: 2rem;
+    }
+
+    .ai-footer-icon-item {
+        padding: 1.25rem;
+    }
+
+    .ai-footer-icon-item span {
+        font-size: 0.9375rem;
+    }
+
+    .ai-icon-footer {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+}
+
+/* Monitores grandes (1601px – 1920px) */
+@media (min-width: 1601px) and (max-width: 1920px) {
+    .ai-content-wrapper {
+        width: 50%;
+        max-width: 75rem;
+        padding: 3rem 4rem !important;
+    }
+
+    .ai-header {
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .ai-logo-container {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .ai-title {
+        font-size: 1.875rem;
+    }
+
+    .ai-title-highlight {
+        font-size: 2.125rem;
+    }
+
+    .ai-welcome {
+        font-size: 1.5rem;
+    }
+
+    .ai-illustration-container {
+        margin-bottom: 3rem;
+        max-width: 55rem;
+    }
+
+    .ai-illustration-img {
+        max-height: 24rem;
+    }
+
+    .ai-login-card {
+        max-width: 42rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2.5rem;
+    }
+
+    .ai-form {
+        gap: 1.75rem;
+    }
+
+    .ai-form-label {
+        font-size: 1.0625rem;
+    }
+
+    .ai-icon-small {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .ai-input {
+        padding: 1.125rem 1.25rem 1.125rem 3.5rem;
+        font-size: 1.125rem;
+    }
+
+    .ai-input-icon {
+        left: 1.25rem;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .ai-toggle-password {
+        right: 1.25rem;
+    }
+
+    .ai-icon-toggle {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .ai-btn-primary {
+        padding: 1.25rem 2.5rem;
+        font-size: 1.1875rem;
+    }
+
+    .ai-btn-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    .ai-link {
+        font-size: 1.0625rem;
+    }
+
+    .ai-footer {
+        padding-top: 3rem;
+    }
+
+    .ai-footer-icons {
+        gap: 2.5rem;
+    }
+
+    .ai-footer-icon-item {
+        padding: 1.5rem;
+    }
+
+    .ai-footer-icon-item span {
+        font-size: 1rem;
+    }
+
+    .ai-icon-footer {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+/* Monitores muy grandes (≥ 1921px) */
+@media (min-width: 1921px) {
+    .ai-content-wrapper {
+        width: 45%;
+        max-width: 85rem;
+        padding: 3.5rem 5rem !important;
+    }
+
+    .ai-header {
+        gap: 2.5rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .ai-logo-container {
+        width: 14rem;
+        height: 14rem;
+    }
+
+    .ai-title {
+        font-size: 2.125rem;
+    }
+
+    .ai-title-highlight {
+        font-size: 2.5rem;
+    }
+
+    .ai-welcome {
+        font-size: 1.75rem;
+    }
+
+    .ai-illustration-container {
+        margin-bottom: 3.5rem;
+        max-width: 60rem;
+    }
+
+    .ai-illustration-img {
+        max-height: 28rem;
+    }
+
+    .ai-login-card {
+        max-width: 48rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 3rem;
+    }
+
+    .ai-form {
+        gap: 2rem;
+    }
+
+    .ai-form-label {
+        font-size: 1.125rem;
+    }
+
+    .ai-icon-small {
+        width: 1.625rem;
+        height: 1.625rem;
+    }
+
+    .ai-input {
+        padding: 1.25rem 1.5rem 1.25rem 4rem;
+        font-size: 1.1875rem;
+        border-radius: 1rem;
+    }
+
+    .ai-input-icon {
+        left: 1.5rem;
+        width: 1.625rem;
+        height: 1.625rem;
+    }
+
+    .ai-toggle-password {
+        right: 1.5rem;
+        padding: 0.625rem;
+    }
+
+    .ai-icon-toggle {
+        width: 1.625rem;
+        height: 1.625rem;
+    }
+
+    .ai-btn-primary {
+        padding: 1.5rem 3rem;
+        font-size: 1.25rem;
+        border-radius: 1rem;
+    }
+
+    .ai-btn-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .ai-link {
+        font-size: 1.125rem;
+    }
+
+    .ai-icon-tiny {
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+    .ai-footer {
+        padding-top: 3.5rem;
+    }
+
+    .ai-footer-icons {
+        gap: 3rem;
+    }
+
+    .ai-footer-icon-item {
+        padding: 1.75rem;
+    }
+
+    .ai-footer-icon-item span {
+        font-size: 1.0625rem;
+    }
+
+    .ai-icon-footer {
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+}

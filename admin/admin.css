@@ -1,0 +1,2857 @@
+/* ========================================
+   RESET Y CONFIGURACIÓN GENERAL
+======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Paleta de colores principal */
+    --color-primary: #2563eb;
+    --color-primary-dark: #1e40af;
+    --color-secondary: #0ea5e9;
+    --color-accent: #7c3aed;
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+
+    /* Colores para gráficos */
+    --color-chart-1: #06b6d4;
+    --color-chart-2: #3b82f6;
+    --color-chart-3: #60a5fa;
+    --color-chart-4: #8b5cf6;
+
+    /* Colores neutros */
+    --color-white: #ffffff;
+    --color-gray-50: #f8fafc;
+    --color-gray-100: #f1f5f9;
+    --color-gray-200: #e2e8f0;
+    --color-gray-300: #cbd5e1;
+    --color-gray-700: #334155;
+    --color-gray-800: #1e293b;
+    --color-gray-900: #0f172a;
+
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: var(--color-gray-800);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   HEADER FIJO
+======================================== */
+.adr-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #F5F5F5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 1rem 2rem;
+}
+
+.adr-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.adr-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.adr-logo {
+    height: 3.5rem;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform var(--transition-fast);
+}
+
+.adr-logo:hover {
+    transform: scale(1.05);
+}
+
+.adr-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.adr-main-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.adr-subtitle {
+    font-size: 0.875rem;
+    color: #3b82f6;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Navegación */
+.adr-nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.adr-nav-link {
+    padding: 0.75rem 1.5rem;
+    color: #1e40af;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border-radius: 0.5rem;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.adr-nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 64, 175, 0.1);
+    transition: left var(--transition-normal);
+}
+
+.adr-nav-link:hover::before {
+    left: 0;
+}
+
+.adr-nav-link:hover {
+    background: rgba(30, 64, 175, 0.1);
+    transform: translateY(-2px);
+    color: #1e40af;
+}
+
+.adr-nav-link.adr-active {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+.adr-nav-link.adr-nav-salir {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.adr-nav-link.adr-nav-salir:hover {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+======================================== */
+.adr-main-container {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 7.5rem;
+    padding-bottom: 2rem;
+}
+
+.adr-content-wrapper {
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ========================================
+   SECCIÓN DE RESUMEN (SUPERIOR)
+======================================== */
+.adr-summary-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tarjeta de total */
+.adr-total-card {
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-50) 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.adr-total-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.adr-total-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15);
+}
+
+.adr-card-icon {
+    font-size: 3rem;
+    color: var(--color-primary);
+    opacity: 0.8;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.adr-summary-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-warning);
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.adr-summary-number {
+    font-size: 5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-warning) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+/* Tarjeta de estados */
+.adr-status-card {
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-50) 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: all var(--transition-normal);
+}
+
+.adr-status-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15);
+}
+
+.adr-status-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.adr-status-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    transition: width var(--transition-fast);
+}
+
+.adr-status-item:hover::before {
+    width: 100%;
+    opacity: 0.1;
+}
+
+.adr-status-item i {
+    font-size: 1.5rem;
+    transition: transform var(--transition-fast);
+}
+
+.adr-status-item:hover i {
+    transform: scale(1.2);
+}
+
+.adr-status-item.adr-pending {
+    background: rgba(245, 158, 11, 0.05);
+    border-left: 4px solid var(--color-warning);
+}
+
+.adr-status-item.adr-pending::before {
+    background: var(--color-warning);
+}
+
+.adr-status-item.adr-pending i {
+    color: var(--color-warning);
+}
+
+.adr-status-item.adr-process {
+    background: rgba(37, 99, 235, 0.05);
+    border-left: 4px solid var(--color-primary);
+}
+
+.adr-status-item.adr-process::before {
+    background: var(--color-primary);
+}
+
+.adr-status-item.adr-process i {
+    color: var(--color-primary);
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.adr-status-item.adr-completed {
+    background: rgba(16, 185, 129, 0.05);
+    border-left: 4px solid var(--color-success);
+}
+
+.adr-status-item.adr-completed::before {
+    background: var(--color-success);
+}
+
+.adr-status-item.adr-completed i {
+    color: var(--color-success);
+}
+
+.adr-status-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+}
+
+.adr-status-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-gray-900);
+}
+
+/* ========================================
+   SECCIÓN DE GRÁFICO DE BARRAS
+======================================== */
+.adr-chart-section {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.adr-chart-card {
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-50) 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-xl);
+    transition: all var(--transition-normal);
+}
+
+.adr-chart-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15);
+}
+
+.adr-chart-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gray-800);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.adr-chart-title i {
+    color: var(--color-primary);
+}
+
+.adr-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gray-300) transparent;
+    min-height: 25rem;
+}
+
+.adr-bar-item {
+    min-width: 120px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* 🔹 asegura que todo empiece desde el mismo eje X */
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+}
+
+
+.adr-bar-label {
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--color-gray-700);
+    word-wrap: break-word;
+    max-width: 120px;
+    line-height: 1.2;
+}
+
+/* Colores adicionales para barras más allá de la décima */
+.adr-bar:nth-child(11) {
+    background: linear-gradient(180deg, #8b5cf6 0%, rgba(139, 92, 246, 0.7) 100%);
+}
+
+.adr-bar:nth-child(12) {
+    background: linear-gradient(180deg, #ec4899 0%, rgba(236, 72, 153, 0.7) 100%);
+}
+
+.adr-bar:nth-child(13) {
+    background: linear-gradient(180deg, #06b6d4 0%, rgba(6, 182, 212, 0.7) 100%);
+}
+
+.adr-bar:nth-child(14) {
+    background: linear-gradient(180deg, #84cc16 0%, rgba(132, 204, 22, 0.7) 100%);
+}
+
+.adr-bar:nth-child(15) {
+    background: linear-gradient(180deg, #eab308 0%, rgba(234, 179, 8, 0.7) 100%);
+}
+
+.adr-bar:nth-child(n+16) {
+    background: linear-gradient(180deg, #6366f1 0%, rgba(99, 102, 241, 0.7) 100%);
+}
+
+
+.adr-bar-wrapper {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    /* 🔹 centra cada barra */
+    position: relative;
+}
+
+
+.adr-bar {
+    width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+    position: relative;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.adr-bar::before {
+    content: attr(data-value);
+    position: absolute;
+    top: -1.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-gray-800);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    text-align: center;
+}
+
+
+.adr-bar:hover {
+    transform: scaleY(1.05);
+    filter: brightness(1.1);
+}
+
+.adr-bar:hover::before {
+    opacity: 1;
+}
+
+.adr-bar-1 {
+    background: linear-gradient(180deg, var(--color-chart-1) 0%, rgba(6, 182, 212, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.adr-bar-2 {
+    background: linear-gradient(180deg, var(--color-chart-2) 0%, rgba(59, 130, 246, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.adr-bar-3 {
+    background: linear-gradient(180deg, var(--color-chart-3) 0%, rgba(96, 165, 250, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(96, 165, 250, 0.3);
+}
+
+.adr-bar-4 {
+    background: linear-gradient(180deg, var(--color-chart-4) 0%, rgba(139, 92, 246, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(139, 92, 246, 0.3);
+}
+
+/* Colores adicionales para barras más allá de la cuarta */
+.adr-bar-5 {
+    background: linear-gradient(180deg, #10b981 0%, rgba(16, 185, 129, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.adr-bar-6 {
+    background: linear-gradient(180deg, #f59e0b 0%, rgba(245, 158, 11, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(245, 158, 11, 0.3);
+}
+
+.adr-bar-7 {
+    background: linear-gradient(180deg, #ef4444 0%, rgba(239, 68, 68, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(239, 68, 68, 0.3);
+}
+
+.adr-bar-8 {
+    background: linear-gradient(180deg, #14b8a6 0%, rgba(20, 184, 166, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(20, 184, 166, 0.3);
+}
+
+.adr-bar-9 {
+    background: linear-gradient(180deg, #e879f9 0%, rgba(232, 121, 249, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(232, 121, 249, 0.3);
+}
+
+.adr-bar-10 {
+    background: linear-gradient(180deg, #f43f5e 0%, rgba(244, 63, 94, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(244, 63, 94, 0.3);
+}
+
+.adr-bar-11 {
+    background: linear-gradient(180deg, #3b82f6 0%, rgba(59, 130, 246, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.adr-bar-12 {
+    background: linear-gradient(180deg, #8b5cf6 0%, rgba(139, 92, 246, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(139, 92, 246, 0.3);
+}
+
+.adr-bar-13 {
+    background: linear-gradient(180deg, #ec4899 0%, rgba(236, 72, 153, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(236, 72, 153, 0.3);
+}
+
+.adr-bar-14 {
+    background: linear-gradient(180deg, #06b6d4 0%, rgba(6, 182, 212, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.adr-bar-15 {
+    background: linear-gradient(180deg, #84cc16 0%, rgba(132, 204, 22, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(132, 204, 22, 0.3);
+}
+
+.adr-bar-16 {
+    background: linear-gradient(180deg, #eab308 0%, rgba(234, 179, 8, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(234, 179, 8, 0.3);
+}
+
+.adr-bar-17 {
+    background: linear-gradient(180deg, #6366f1 0%, rgba(99, 102, 241, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.adr-bar-18 {
+    background: linear-gradient(180deg, #f97316 0%, rgba(249, 115, 22, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(249, 115, 22, 0.3);
+}
+
+.adr-bar-19 {
+    background: linear-gradient(180deg, #9333ea 0%, rgba(147, 51, 234, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(147, 51, 234, 0.3);
+}
+
+.adr-bar-20 {
+    background: linear-gradient(180deg, #fbbf24 0%, rgba(251, 191, 36, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(251, 191, 36, 0.3);
+}
+
+.adr-bar-21 {
+    background: linear-gradient(180deg, #ef4444 0%, rgba(239, 68, 68, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(239, 68, 68, 0.3);
+}
+
+.adr-bar-22 {
+    background: linear-gradient(180deg, #3b82f6 0%, rgba(59, 130, 246, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.adr-bar-23 {
+    background: linear-gradient(180deg, #10b981 0%, rgba(16, 185, 129, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.adr-bar-24 {
+    background: linear-gradient(180deg, #f59e0b 0%, rgba(245, 158, 11, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(245, 158, 11, 0.3);
+}
+
+.adr-bar-25 {
+    background: linear-gradient(180deg, #ef4444 0%, rgba(239, 68, 68, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(239, 68, 68, 0.3);
+}
+
+.adr-bar-26 {
+    background: linear-gradient(180deg, #14b8a6 0%, rgba(20, 184, 166, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(20, 184, 166, 0.3);
+}
+
+.adr-bar-27 {
+    background: linear-gradient(180deg, #e879f9 0%, rgba(232, 121, 249, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(232, 121, 249, 0.3);
+}
+
+.adr-bar-28 {
+    background: linear-gradient(180deg, #f43f5e 0%, rgba(244, 63, 94, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(244, 63, 94, 0.3);
+}
+
+.adr-bar-29 {
+    background: linear-gradient(180deg, #3b82f6 0%, rgba(59, 130, 246, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.adr-bar-30 {
+    background: linear-gradient(180deg, #8b5cf6 0%, rgba(139, 92, 246, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(139, 92, 246, 0.3);
+}
+
+.adr-bar-31 {
+    background: linear-gradient(180deg, #ec4899 0%, rgba(236, 72, 153, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(236, 72, 153, 0.3);
+}
+
+.adr-bar-32 {
+    background: linear-gradient(180deg, #06b6d4 0%, rgba(6, 182, 212, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.adr-bar-33 {
+    background: linear-gradient(180deg, #84cc16 0%, rgba(132, 204, 22, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(132, 204, 22, 0.3);
+}
+
+.adr-bar-34 {
+    background: linear-gradient(180deg, #eab308 0%, rgba(234, 179, 8, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(234, 179, 8, 0.3);
+}
+
+.adr-bar-35 {
+    background: linear-gradient(180deg, #6366f1 0%, rgba(99, 102, 241, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.adr-bar-36 {
+    background: linear-gradient(180deg, #f97316 0%, rgba(249, 115, 22, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(249, 115, 22, 0.3);
+}
+
+.adr-bar-37 {
+    background: linear-gradient(180deg, #9333ea 0%, rgba(147, 51, 234, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(147, 51, 234, 0.3);
+}
+
+.adr-bar-38 {
+    background: linear-gradient(180deg, #fbbf24 0%, rgba(251, 191, 36, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(251, 191, 36, 0.3);
+}
+
+.adr-bar-39 {
+    background: linear-gradient(180deg, #ef4444 0%, rgba(239, 68, 68, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(239, 68, 68, 0.3);
+}
+
+.adr-bar-40 {
+    background: linear-gradient(180deg, #3b82f6 0%, rgba(59, 130, 246, 0.7) 100%);
+    box-shadow: 0 -4px 20px rgba(59, 130, 246, 0.3);
+}
+
+
+/* ========================================
+   SECCIÓN INFERIOR: PIE Y TABLA
+======================================== */
+.adr-bottom-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0.5rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Gráfico circular */
+.adr-pie-card {
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-50) 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-xl);
+    transition: all var(--transition-normal);
+}
+
+.adr-pie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15);
+}
+
+.adr-pie-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-gray-800);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.adr-pie-title i {
+    color: var(--color-primary);
+}
+
+.adr-pie-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.adr-pie-chart {
+    width: 200px;
+    height: 200px;
+    transform: rotate(-90deg);
+}
+
+.adr-pie-segment {
+    fill: none;
+    stroke-width: 40;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.adr-pie-segment:hover {
+    stroke-width: 45;
+    filter: brightness(1.1);
+}
+
+.adr-pie-bienes {
+    stroke: var(--color-chart-1);
+}
+
+.adr-pie-servicios {
+    stroke: var(--color-chart-2);
+}
+
+.adr-pie-obras {
+    stroke: var(--color-chart-4);
+}
+
+.adr-pie-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.adr-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all var(--transition-fast);
+}
+
+.adr-legend-item:hover {
+    background: var(--color-gray-100);
+    transform: translateX(5px);
+}
+
+.adr-legend-color {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.25rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.adr-legend-bienes {
+    background: var(--color-chart-1);
+}
+
+.adr-legend-servicios {
+    background: var(--color-chart-2);
+}
+
+.adr-legend-obras {
+    background: var(--color-chart-4);
+}
+
+.adr-legend-label {
+    font-size: 0.95rem;
+    color: var(--color-gray-700);
+    font-weight: 500;
+}
+
+.adr-legend-label strong {
+    color: var(--color-gray-900);
+    font-weight: 700;
+}
+
+/* Tabla */
+.adr-table-card {
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-50) 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-xl);
+    transition: all var(--transition-normal);
+}
+
+.adr-table-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15);
+}
+
+.adr-table-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-warning);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.adr-table-title i {
+    color: var(--color-warning);
+}
+
+.adr-table-wrapper {
+    overflow-x: auto;
+    border-radius: 0.5rem;
+}
+
+.adr-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-white);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.adr-table thead {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+}
+
+.adr-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 700;
+    color: var(--color-white);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.adr-table tbody tr {
+    border-bottom: 1px solid var(--color-gray-200);
+    transition: all var(--transition-fast);
+}
+
+.adr-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.adr-table tbody tr:hover {
+    background: linear-gradient(90deg, transparent 0%, rgba(37, 99, 235, 0.05) 50%, transparent 100%);
+    transform: scale(1.01);
+}
+
+.adr-table td {
+    padding: 1rem 0.5rem;
+    color: var(--color-gray-700);
+    font-size: 0.95rem;
+}
+
+/* Badges de estado */
+.adr-badge {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all var(--transition-fast);
+    text-align: center;
+    line-height: 1.1;
+}
+
+.adr-badge-pending {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+    color: #92400e;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.adr-badge-process {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(37, 99, 235, 0.1) 100%);
+    color: var(--color-primary-dark);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+.adr-badge-completed {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+    color: #065f46;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.adr-badge:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.adr-filtros-panel {
+    margin: 0;
+}
+
+/* ========================================
+   MEDIA QUERIES - RESPONSIVE
+======================================== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    .adr-header-content {
+        gap: 1rem;
+    }
+
+    .adr-nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .adr-summary-section {
+        grid-template-columns: 1fr;
+    }
+
+    .adr-bar-chart {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .adr-bottom-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    .adr-header {
+        padding: 1rem;
+    }
+
+    .adr-logo {
+        height: 2.5rem;
+    }
+
+    .adr-main-title {
+        font-size: 1.25rem;
+    }
+
+    .adr-subtitle {
+        font-size: 0.75rem;
+    }
+
+    .adr-nav-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .adr-main-container {
+        padding-top: 7rem;
+    }
+
+    .adr-content-wrapper {
+        width: 95%;
+        gap: 1.5rem;
+    }
+
+    .adr-summary-number {
+        font-size: 3.5rem;
+    }
+
+    .adr-status-value {
+        font-size: 1.5rem;
+    }
+
+    .adr-bar-chart {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .adr-bar-wrapper {
+        height: 200px;
+    }
+
+    /* Tabla responsive - modo cards */
+    .adr-table thead {
+        display: none;
+    }
+
+    .adr-table tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--color-gray-200);
+        border-radius: 0.5rem;
+        padding: 1rem;
+    }
+
+    .adr-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--color-gray-100);
+        text-align: end;
+    }
+
+    .adr-table td:last-child {
+        border-bottom: none;
+    }
+
+    .adr-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--color-gray-800);
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+
+    .adr-chart-title,
+    .adr-pie-title,
+    .adr-table-title {
+        font-size: 1rem;
+    }
+
+    .adr-status-label {
+        font-size: 0.85rem;
+    }
+
+    .adr-bar-label {
+        font-size: 0.75rem;
+    }
+}
+
+.adr-summary-section,
+.adr-chart-section,
+.adr-bottom-section {
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+}
+
+.loaded .adr-summary-section,
+.loaded .adr-chart-section,
+.loaded .adr-bottom-section {
+    opacity: 1;
+}
+
+
+
+/* ========================================
+   MEDIA QUERIES - DISEÑO RESPONSIVE COMPLETO
+   ======================================== */
+
+/* Teléfonos pequeños (≤ 360px) */
+@media (max-width: 360px) {
+    .adr-header {
+        padding: 0.75rem 0.5rem;
+        display: flex;
+        padding: 0.5rem;
+        margin: 0 !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+
+    .adr-header-content {
+        gap: 0.75rem;
+        margin: 0;
+    }
+
+    .adr-logo-section {
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .adr-logo {
+        height: 2.25rem;
+    }
+
+    .adr-title-group {
+        align-items: center;
+    }
+
+    .adr-main-title {
+        font-size: 0.875rem;
+        text-align: center;
+        line-height: 1.3;
+    }
+
+    .adr-subtitle {
+        font-size: 0.6875rem;
+        text-align: center;
+    }
+
+    .adr-nav {
+        width: 100%;
+        gap: 0.375rem;
+    }
+
+    .adr-nav-link {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+        text-align: center;
+    }
+
+    .adr-main-container {
+        padding-top: 5rem;
+        padding-bottom: 1rem;
+    }
+
+    .adr-content-wrapper {
+        width: 98%;
+        gap: 1rem;
+    }
+
+    .adr-summary-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .adr-total-card {
+        padding: 1.25rem;
+    }
+
+    .adr-card-icon {
+        font-size: 2rem;
+    }
+
+    .adr-summary-title {
+        font-size: 0.875rem;
+    }
+
+    .adr-summary-number {
+        font-size: 3rem;
+    }
+
+    .adr-status-card {
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+
+    .adr-status-item {
+        grid-template-columns: auto 1fr auto;
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .adr-status-item i {
+        font-size: 1.125rem;
+    }
+
+    .adr-status-label {
+        font-size: 0.75rem;
+    }
+
+    .adr-status-value {
+        font-size: 1.25rem;
+    }
+
+    .adr-chart-card {
+        padding: 1.25rem;
+    }
+
+    .adr-chart-title {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+        gap: 0.5rem;
+    }
+
+    .adr-chart-title i {
+        font-size: 1rem;
+    }
+
+    .adr-bar-chart {
+        min-height: auto;
+        gap: 0.5rem;
+    }
+
+    .adr-bar-item {
+        min-width: 50%;
+        width: 10%;
+        height: 100%;
+        margin: 2rem 0 0 0;
+    }
+
+    .adr-bar-wrapper {
+        height: 150px;
+    }
+
+    .adr-bar-label {
+        font-size: 0.75rem;
+        max-width: 100%;
+    }
+
+    .adr-bar::before {
+        font-size: 0.875rem;
+        top: -1.5rem;
+    }
+
+    .adr-bottom-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .adr-pie-card {
+        padding: 1.25rem;
+    }
+
+    .adr-pie-title {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        gap: 0.5rem;
+    }
+
+    .adr-pie-title i {
+        font-size: 1rem;
+    }
+
+    .adr-pie-container {
+        gap: 1.25rem;
+    }
+
+    .adr-pie-chart {
+        width: 150px;
+        height: 150px;
+    }
+
+    .adr-pie-segment {
+        stroke-width: 35;
+    }
+
+    .adr-pie-legend {
+        gap: 0.75rem;
+    }
+
+    .adr-legend-item {
+        gap: 0.5rem;
+        padding: 0.375rem;
+    }
+
+    .adr-legend-color {
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+    .adr-legend-label {
+        font-size: 0.8125rem;
+    }
+
+    .adr-table-card {
+        padding: 1.25rem;
+    }
+
+    .adr-table-title {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        gap: 0.5rem;
+    }
+
+    .adr-table-title i {
+        font-size: 1rem;
+    }
+
+    .adr-table thead {
+        display: none;
+    }
+
+    .adr-table tbody tr {
+        display: block;
+        margin-bottom: 0.75rem;
+        border: 1px solid var(--color-gray-200);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .adr-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.375rem 0;
+        border-bottom: 1px solid var(--color-gray-100);
+        font-size: 0.8125rem;
+        text-align: end;
+        gap: 1rem;
+    }
+
+    .adr-table td:last-child {
+        border-bottom: none;
+    }
+
+    .adr-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--color-gray-800);
+        font-size: 0.8125rem;
+    }
+
+    .adr-badge {
+        padding: 0.25rem 0.625rem;
+        font-size: 0.6875rem;
+    }
+}
+
+/* Teléfonos medianos - grandes (361px – 600px) */
+@media (min-width: 361px) and (max-width: 600px) {
+    .adr-header {
+        padding: 0.875rem 1rem;
+    }
+
+    .adr-header-content {
+        gap: 1rem;
+    }
+
+    .adr-logo-section {
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .adr-logo {
+        height: 2.75rem;
+    }
+
+    .adr-title-group {
+        align-items: center;
+    }
+
+    .adr-main-title {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .adr-subtitle {
+        font-size: 0.75rem;
+        text-align: center;
+    }
+
+    .adr-nav {
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .adr-nav-link {
+        width: 100%;
+        padding: 0.625rem 1rem;
+        font-size: 0.8125rem;
+        text-align: center;
+    }
+
+    .adr-main-container {
+        padding-top: 06rem;
+        padding-bottom: 1.25rem;
+    }
+
+    .adr-content-wrapper {
+        width: 96%;
+        gap: 1.25rem;
+    }
+
+    .adr-summary-section {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .adr-total-card {
+        padding: 1.5rem;
+    }
+
+    .adr-card-icon {
+        font-size: 2.5rem;
+    }
+
+    .adr-summary-title {
+        font-size: 1rem;
+    }
+
+    .adr-summary-number {
+        font-size: 3.5rem;
+    }
+
+    .adr-status-card {
+        padding: 1.5rem;
+        gap: 1.25rem;
+    }
+
+    .adr-status-item {
+        padding: 0.875rem;
+        gap: 0.75rem;
+    }
+
+    .adr-status-item i {
+        font-size: 1.25rem;
+    }
+
+    .adr-status-label {
+        font-size: 0.8125rem;
+    }
+
+    .adr-status-value {
+        font-size: 1.5rem;
+    }
+
+    .adr-chart-card {
+        padding: 1.5rem;
+    }
+
+    .adr-chart-title {
+        font-size: 1.125rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .adr-bar-chart {
+        min-height: auto;
+        gap: 0.8rem;
+    }
+
+    .adr-bar-item {
+        min-width: 50%;
+        width: 10%;
+        height: auto;
+        margin: 2rem 0 0 0;
+    }
+
+    .adr-bar-wrapper {
+        height: 280px;
+    }
+
+    .adr-bar-label {
+        font-size: 0.8125rem;
+        max-width: 100%;
+    }
+
+    .adr-bottom-section {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .adr-pie-card {
+        padding: 1.5rem;
+    }
+
+    .adr-pie-title {
+        font-size: 1.125rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .adr-pie-container {
+        gap: 1.5rem;
+    }
+
+    .adr-pie-chart {
+        width: 180px;
+        height: 180px;
+    }
+
+    .adr-pie-segment {
+        stroke-width: 38;
+    }
+
+    .adr-legend-item {
+        padding: 0.5rem;
+        gap: 0.625rem;
+    }
+
+    .adr-legend-color {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .adr-legend-label {
+        font-size: 0.875rem;
+    }
+
+    .adr-table-card {
+        padding: 1.5rem;
+    }
+
+    .adr-table-title {
+        font-size: 1.125rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .adr-table thead {
+        display: none;
+    }
+
+    .adr-table tbody tr {
+        display: block;
+        margin-bottom: 0.875rem;
+        border: 1px solid var(--color-gray-200);
+        border-radius: 0.5rem;
+        padding: 0.875rem;
+    }
+
+    .adr-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--color-gray-100);
+        font-size: 0.875rem;
+    }
+
+    .adr-table td:last-child {
+        border-bottom: none;
+    }
+
+    .adr-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--color-gray-800);
+        font-size: 0.875rem;
+    }
+
+    .adr-badge {
+        padding: 0.3125rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+}
+
+/* Laptops pequeñas - estándar (1201px – 1600px) */
+@media (min-width: 1201px) and (max-width: 1600px) {
+    .adr-header {
+        padding: 1.125rem 2.5rem;
+    }
+
+    .adr-logo {
+        height: 3.75rem;
+    }
+
+    .adr-main-title {
+        font-size: 1.25rem;
+    }
+
+    .adr-subtitle {
+        font-size: 0.9375rem;
+    }
+
+    .adr-nav {
+        gap: 0.625rem;
+    }
+
+    .adr-nav-link {
+        padding: 0.875rem 1.75rem;
+        font-size: 0.9375rem;
+    }
+
+    .adr-main-container {
+        padding-top: 8rem;
+    }
+
+    .adr-content-wrapper {
+        max-width: 1500px;
+        gap: 2.25rem;
+    }
+
+    .adr-summary-section {
+        gap: 2.25rem;
+    }
+
+    .adr-total-card {
+        padding: 2.25rem;
+    }
+
+    .adr-card-icon {
+        font-size: 3.25rem;
+    }
+
+    .adr-summary-title {
+        font-size: 1.375rem;
+    }
+
+    .adr-summary-number {
+        font-size: 5.5rem;
+    }
+
+    .adr-status-card {
+        padding: 2.25rem;
+        gap: 1.75rem;
+    }
+
+    .adr-status-item {
+        padding: 1.125rem;
+    }
+
+    .adr-status-item i {
+        font-size: 1.625rem;
+    }
+
+    .adr-status-label {
+        font-size: 1rem;
+    }
+
+    .adr-status-value {
+        font-size: 2.25rem;
+    }
+
+    .adr-chart-card {
+        padding: 2.25rem;
+    }
+
+    .adr-chart-title {
+        font-size: 1.625rem;
+        margin-bottom: 2.25rem;
+    }
+
+    .adr-bar-chart {
+        min-height: 27rem;
+        gap: 1.25rem;
+    }
+
+    .adr-bar-item {
+        min-width: 140px;
+    }
+
+    .adr-bar-wrapper {
+        height: 280px;
+    }
+
+    .adr-bar-label {
+        font-size: 0.9375rem;
+        max-width: 140px;
+    }
+
+    .adr-bar::before {
+        font-size: 1.0625rem;
+        top: -2rem;
+    }
+
+    .adr-bottom-section {
+        gap: 2.25rem;
+    }
+
+    .adr-pie-card {
+        padding: 2.25rem;
+    }
+
+    .adr-pie-title {
+        font-size: 1.375rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .adr-pie-container {
+        gap: 2.25rem;
+    }
+
+    .adr-pie-chart {
+        width: 220px;
+        height: 220px;
+    }
+
+    .adr-pie-segment {
+        stroke-width: 42;
+    }
+
+    .adr-legend-item {
+        padding: 0.625rem;
+    }
+
+    .adr-legend-color {
+        width: 1.625rem;
+        height: 1.625rem;
+    }
+
+    .adr-legend-label {
+        font-size: 1rem;
+    }
+
+    .adr-table-card {
+        padding: 2.25rem;
+    }
+
+    .adr-table-title {
+        font-size: 1.375rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .adr-table th {
+        padding: 1.125rem;
+        font-size: 1rem;
+    }
+
+    .adr-table td {
+        padding: 1.125rem 0.625rem;
+        font-size: 1rem;
+    }
+
+    .adr-badge {
+        padding: 0.4375rem 1rem;
+        font-size: 0.9375rem;
+    }
+}
+
+/* Monitores grandes (1601px – 1920px) */
+@media (min-width: 1601px) and (max-width: 1920px) {
+    .adr-header {
+        padding: 1.25rem 3rem;
+    }
+
+    .adr-logo {
+        height: 4rem;
+    }
+
+    .adr-main-title {
+        font-size: 1.75rem;
+    }
+
+    .adr-subtitle {
+        font-size: 1rem;
+    }
+
+    .adr-nav {
+        gap: 0.75rem;
+    }
+
+    .adr-nav-link {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .adr-main-container {
+        padding-top: 8.5rem;
+    }
+
+    .adr-content-wrapper {
+        max-width: 98%;
+        gap: 2.5rem;
+    }
+
+    .adr-summary-section {
+        gap: 2.5rem;
+    }
+
+    .adr-total-card {
+        padding: 2.5rem;
+    }
+
+    .adr-card-icon {
+        font-size: 3.5rem;
+    }
+
+    .adr-summary-title {
+        font-size: 1.5rem;
+    }
+
+    .adr-summary-number {
+        font-size: 6rem;
+    }
+
+    .adr-status-card {
+        padding: 2.5rem;
+        gap: 2rem;
+    }
+
+    .adr-status-item {
+        padding: 1.25rem;
+    }
+
+    .adr-status-item i {
+        font-size: 1.75rem;
+    }
+
+    .adr-status-label {
+        font-size: 1.0625rem;
+    }
+
+    .adr-status-value {
+        font-size: 2.5rem;
+    }
+
+    .adr-chart-card {
+        padding: 2.5rem;
+    }
+
+    .adr-chart-title {
+        font-size: 1.75rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .adr-bar-chart {
+        min-height: 30rem;
+        gap: 1.5rem;
+    }
+
+    .adr-bar-item {
+        min-width: 160px;
+    }
+
+    .adr-bar-wrapper {
+        height: 300px;
+    }
+
+    .adr-bar-label {
+        font-size: 1rem;
+        max-width: 160px;
+    }
+
+    .adr-bar::before {
+        font-size: 1.125rem;
+        top: -2.25rem;
+    }
+
+    .adr-bottom-section {
+        gap: 2.5rem;
+    }
+
+    .adr-pie-card {
+        padding: 2.5rem;
+    }
+
+    .adr-pie-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .adr-pie-container {
+        gap: 2.5rem;
+    }
+
+    .adr-pie-chart {
+        width: 240px;
+        height: 240px;
+    }
+
+    .adr-pie-segment {
+        stroke-width: 44;
+    }
+
+    .adr-legend-item {
+        padding: 0.75rem;
+    }
+
+    .adr-legend-color {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    .adr-legend-label {
+        font-size: 1.0625rem;
+    }
+
+    .adr-table-card {
+        padding: 2.5rem;
+    }
+
+    .adr-table-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .adr-table th {
+        padding: 1.25rem;
+        font-size: 1.0625rem;
+    }
+
+    .adr-table td {
+        padding: 1.25rem 0.75rem;
+        font-size: 1.0625rem;
+    }
+
+    .adr-badge {
+        padding: 0.5rem 1.125rem;
+        font-size: 1rem;
+    }
+}
+
+/* Monitores muy grandes (≥ 1921px) */
+@media (min-width: 1921px) {
+    .adr-header {
+        padding: 1.5rem 4rem;
+    }
+
+    .adr-logo {
+        height: 4.5rem;
+    }
+
+    .adr-main-title {
+        font-size: 2rem;
+    }
+
+    .adr-subtitle {
+        font-size: 1.125rem;
+    }
+
+    .adr-nav {
+        gap: 1rem;
+    }
+
+    .adr-nav-link {
+        padding: 1.125rem 2.25rem;
+        font-size: 1.0625rem;
+    }
+
+    .adr-main-container {
+        padding-top: 9rem;
+    }
+
+    .adr-content-wrapper {
+        max-width: 95%;
+        gap: 3rem;
+    }
+
+    .adr-summary-section {
+        gap: 3rem;
+    }
+
+    .adr-total-card {
+        padding: 3rem;
+    }
+
+    .adr-card-icon {
+        font-size: 4rem;
+    }
+
+    .adr-summary-title {
+        font-size: 1.75rem;
+    }
+
+    .adr-summary-number {
+        font-size: 7rem;
+    }
+
+    .adr-status-card {
+        padding: 3rem;
+        gap: 2.5rem;
+    }
+
+    .adr-status-item {
+        padding: 1.5rem;
+    }
+
+    .adr-status-item i {
+        font-size: 2rem;
+    }
+
+    .adr-status-label {
+        font-size: 1.125rem;
+    }
+
+    .adr-status-value {
+        font-size: 3rem;
+    }
+
+    .adr-chart-card {
+        padding: 3rem;
+    }
+
+    .adr-chart-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .adr-bar-chart {
+        min-height: 35rem;
+        gap: 2rem;
+    }
+
+    .adr-bar-item {
+        min-width: 180px;
+    }
+
+    .adr-bar-wrapper {
+        height: 350px;
+    }
+
+    .adr-bar-label {
+        font-size: 1.0625rem;
+        max-width: 180px;
+    }
+
+    .adr-bar::before {
+        font-size: 1.25rem;
+        top: -2.5rem;
+    }
+
+    .adr-bottom-section {
+        gap: 3rem;
+    }
+
+    .adr-pie-card {
+        padding: 3rem;
+    }
+
+    .adr-pie-title {
+        font-size: 1.75rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .adr-pie-container {
+        gap: 3rem;
+    }
+
+    .adr-pie-chart {
+        width: 280px;
+        height: 280px;
+    }
+
+    .adr-pie-segment {
+        stroke-width: 48;
+    }
+
+    .adr-legend-item {
+        padding: 1rem;
+    }
+
+    .adr-legend-color {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .adr-legend-label {
+        font-size: 1.125rem;
+    }
+
+    .adr-table-card {
+        padding: 3rem;
+    }
+
+    .adr-table-title {
+        font-size: 1.75rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .adr-table th {
+        padding: 1.5rem;
+        font-size: 1.125rem;
+    }
+
+    .adr-table td {
+        padding: 1.5rem 1rem;
+        font-size: 1.125rem;
+    }
+
+    .adr-badge {
+        padding: 0.625rem 1.25rem;
+        font-size: 1.0625rem;
+    }
+}
+
+/* ========================================
+   MENÚ HAMBURGUESA PARA DISPOSITIVOS MÓVILES
+   ======================================== */
+
+/* Botón hamburguesa (oculto por defecto en pantallas grandes) */
+.adr-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: relative;
+}
+
+.adr-hamburger:focus {
+    outline: none;
+}
+
+.adr-hamburger-line {
+    width: 2rem;
+    height: 0.25rem;
+    background: #1e40af;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+}
+
+/* Animación del icono hamburguesa cuando está activo */
+.adr-hamburger.active .adr-hamburger-line:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.adr-hamburger.active .adr-hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.adr-hamburger.active .adr-hamburger-line:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+/* Overlay oscuro cuando el menú está abierto */
+.adr-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    height: auto;
+}
+
+.adr-menu-overlay.active {
+    opacity: 1;
+}
+
+/* ========================================
+   MEDIA QUERIES PARA MENÚ HAMBURGUESA
+   ======================================== */
+
+/* Tablets y dispositivos pequeños (≤ 768px) */
+@media (max-width: 768px) {
+
+    /* Mostrar botón hamburguesa */
+    .adr-hamburger {
+        display: flex;
+    }
+
+    .adr-menu-overlay {
+        display: block;
+    }
+
+    /* Header ajustado */
+    .adr-header-content {
+        position: relative;
+    }
+
+    /* Navegación móvil */
+    .adr-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 280px;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        justify-content: flex-start;
+        padding: 6rem 1.5rem 2rem;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    .adr-nav.active {
+        right: 0;
+    }
+
+    .adr-nav-link {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.25rem;
+        margin-bottom: 0.5rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    .adr-nav-link:hover {
+        border-left-color: #1e40af;
+        background: rgba(30, 64, 175, 0.08);
+        transform: translateX(5px);
+    }
+
+    .adr-nav-link.adr-active {
+        border-left-color: #1e40af;
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
+    }
+
+    .adr-nav-link.adr-nav-salir {
+        margin-top: auto;
+        border-left-color: rgba(239, 68, 68, 0.5);
+    }
+}
+
+/* Teléfonos pequeños (≤ 360px) */
+@media (max-width: 360px) {
+    .adr-hamburger {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    .adr-hamburger-line {
+        width: 1.75rem;
+        height: 0.2rem;
+    }
+
+    .adr-nav {
+        width: 250px;
+        padding: 1rem 1rem 1.5rem;
+        gap: 0.25rem !important;
+    }
+
+    .adr-nav-link {
+        padding: 0.65rem 1rem;
+        font-size: 0.8125rem;
+        margin-bottom: 0.25rem;
+        height: 3rem;
+    }
+
+    .adr-nav::before {
+        top: 0rem;
+        right: 1.25rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.25rem;
+    }
+}
+
+/* Teléfonos medianos (361px – 600px) */
+@media (min-width: 361px) and (max-width: 600px) {
+    .adr-nav {
+        width: 270px;
+        padding: 5.5rem 1.25rem 1.75rem;
+    }
+
+    .adr-nav-link {
+        padding: 0.9375rem 1.125rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* Tablets pequeñas (601px – 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+    .adr-nav {
+        width: 300px;
+        padding: 6rem 1.5rem 2rem;
+    }
+
+    .adr-nav-link {
+        padding: 1rem 1.25rem;
+        font-size: 0.9375rem;
+    }
+}
+
+/* Teléfonos medianos - grandes (361px – 600px) */
+@media (min-width: 361px) and (max-width: 600px) {
+    .adr-header {
+        padding: 0.875rem 1rem;
+    }
+
+    .adr-header-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .adr-logo-section {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.75rem;
+        flex: 1;
+    }
+
+    .adr-logo {
+        height: 2.75rem;
+        flex-shrink: 0;
+    }
+
+    .adr-title-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .adr-main-title {
+        font-size: 0.9rem;
+        text-align: left;
+        line-height: 1.2;
+    }
+
+    .adr-subtitle {
+        font-size: 0.75rem;
+        text-align: left;
+    }
+
+    /* Botón hamburguesa visible */
+    .adr-hamburger {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    /* Navegación oculta por defecto */
+    .adr-nav {
+        width: 270px;
+        padding: 5.5rem 1.25rem 1.75rem;
+    }
+
+    .adr-nav-link {
+        width: 100%;
+        padding: 0.9375rem 1.125rem;
+        font-size: 0.875rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 360px) {
+    .adr-header {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .adr-header-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between !important;
+        align-items: end;
+        gap: 2.5rem;
+    }
+
+    .adr-logo-section {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1;
+    }
+
+    .adr-logo {
+        height: 2.25rem;
+        flex-shrink: 0;
+    }
+
+    .adr-title-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .adr-main-title {
+        font-size: 0.75rem;
+        text-align: left;
+        line-height: 1.2;
+    }
+
+    .adr-subtitle {
+        font-size: 0.65rem;
+        text-align: left;
+    }
+
+    .adr-hamburger {
+        display: flex;
+        flex-shrink: 0;
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+}
+
+/* Teléfonos pequeños (≤ 360px) */
+@media (max-width: 360px) {
+
+    .adr-nav {
+        width: 250px;
+        padding: 4rem 1rem 1.5rem;
+        /* ⬅️ Reducido el padding superior */
+    }
+
+    .adr-nav-link {
+        padding: 0.65rem 1rem;
+        /* ⬅️ Reducido el padding vertical */
+        font-size: 0.8125rem;
+        margin-bottom: 0.25rem;
+        /* ⬅️ Reducido el espacio entre botones */
+    }
+}
+
+/* Teléfonos medianos - grandes (361px – 600px) */
+@media (min-width: 361px) and (max-width: 600px) {
+    /* ... tu código anterior ... */
+
+    .adr-nav {
+        width: 270px;
+        padding: 4.5rem 1.25rem 1.75rem;
+        /* ⬅️ Reducido el padding superior */
+    }
+
+    .adr-nav-link {
+        width: 100%;
+        padding: 0.75rem 1.125rem;
+        /* ⬅️ Reducido el padding vertical */
+        font-size: 0.875rem;
+        text-align: center;
+        margin-bottom: 0.35rem;
+        /* ⬅️ Reducido el espacio entre botones */
+    }
+}
+
+/* Tablets pequeñas (601px – 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+    .adr-nav {
+        width: 300px;
+        padding: 5rem 1.5rem 2rem;
+        /* ⬅️ Reducido el padding superior */
+    }
+
+    .adr-nav-link {
+        padding: 0.85rem 1.25rem;
+        /* ⬅️ Reducido el padding vertical */
+        font-size: 0.9375rem;
+        margin-bottom: 0.4rem;
+        /* ⬅️ Reducido el espacio entre botones */
+    }
+}
+
+@media (max-width: 768px) {
+    /* ... tu código anterior ... */
+
+    .adr-nav-link {
+        width: 100%;
+        text-align: left;
+        padding: 0.75rem 1.25rem;
+        /* ⬅️ Ajustado */
+        margin-bottom: 0.4rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid transparent;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        /* ⬅️ Más peso para mejor legibilidad */
+        letter-spacing: 0.3px;
+        /* ⬅️ Mejor espaciado */
+    }
+
+    .adr-nav-link.adr-active {
+        border-left-color: #1e40af;
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.2) 0%, rgba(59, 130, 246, 0.15) 100%);
+        color: #1e40af;
+        font-weight: 700;
+        /* ⬅️ Más destacado */
+        box-shadow: 0 2px 8px rgba(30, 64, 175, 0.15);
+        /* ⬅️ Sombra sutil */
+    }
+
+    .adr-nav-link:hover {
+        border-left-color: #1e40af;
+        background: rgba(30, 64, 175, 0.08);
+        transform: translateX(5px);
+    }
+
+    .adr-nav-link.adr-nav-salir {
+        margin-top: 1.5rem;
+        /* ⬅️ Separar el botón Salir */
+        border-left-color: rgba(239, 68, 68, 0.5);
+        background: rgba(239, 68, 68, 0.05);
+    }
+
+    .adr-nav-link.adr-nav-salir:hover {
+        background: rgba(239, 68, 68, 0.15);
+        border-left-color: rgba(239, 68, 68, 0.8);
+    }
+}
+
+@media (max-width: 360px) {}
+
+/* ========================================
+    MENÚ HAMBURGUESA MEJORADO
+    ======================================== */
+
+.adr-hamburger {
+    flex-direction: column;
+    justify-content: space-around;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: relative;
+    gap: 0.375rem;
+}
+
+.adr-hamburger:focus {
+    outline: none;
+}
+
+.adr-hamburger-line {
+    width: 100%;
+    height: 5.2rem;
+    background: #1e40af;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Posicionar el hamburguesa en la esquina superior derecha */
+.adr-hamburger {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1002;
+}
+
+/* Estilo para el botón de cierre (X) en el menú móvil */
+.adr-nav::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: #1e40af;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1002;
+}
+
+/* Agregar padding superior al nav para que no se superponga con la X */
+@media (max-width: 768px) {
+    .adr-nav {
+        padding-top: 3.5rem !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .adr-nav {
+        padding-top: 3.25rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .adr-nav {
+        padding-top: 3rem !important;
+    }
+}
+
+.adr-hamburger.active .adr-hamburger-line:nth-child(1) {
+    transform: translateY(0.625rem) rotate(45deg);
+}
+
+.adr-hamburger.active .adr-hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.adr-hamburger.active .adr-hamburger-line:nth-child(3) {
+    transform: translateY(-0.625rem) rotate(-45deg);
+}
+
+/* Overlay oscuro mejorado */
+.adr-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.adr-menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ========================================
+    NAVEGACIÓN MÓVIL MEJORADA
+    ======================================== */
+
+@media (max-width: 1024px) {
+    .adr-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 280px;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        overflow-y: auto;
+        gap: 0;
+    }
+
+    .adr-nav.active {
+        right: 0;
+    }
+
+    .adr-nav-link {
+        width: 100%;
+        text-align: left;
+        padding: 0.875rem 1rem;
+        margin: 0.25rem 0;
+        border-radius: 0.5rem;
+        border-left: 4px solid transparent;
+        transition: all 0.2s ease;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .adr-nav-link:hover {
+        border-left-color: #1e40af;
+        background: rgba(30, 64, 175, 0.1);
+        transform: translateX(4px);
+    }
+
+    .adr-nav-link.adr-active {
+        border-left-color: #1e40af;
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
+        color: #1e40af;
+        font-weight: 700;
+    }
+
+    .adr-nav-link.adr-nav-salir {
+        margin-top: auto;
+        background: rgba(239, 68, 68, 0.08);
+        border-left-color: rgba(239, 68, 68, 0.6);
+        color: #991b1b;
+    }
+
+    .adr-nav-link.adr-nav-salir:hover {
+        background: rgba(239, 68, 68, 0.15);
+        border-left-color: #ef4444;
+    }
+}
+
+@media (max-width: 600px) {
+    .adr-nav {
+        width: 260px;
+        padding: 0.75rem;
+    }
+
+    .adr-nav-link {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.85rem;
+        margin: 0.2rem 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .adr-nav {
+        width: 240px;
+        padding: 0.5rem;
+    }
+
+    .adr-nav-link {
+        padding: 0.7rem 0.75rem;
+        font-size: 0.8rem;
+        margin: 0.15rem 0;
+    }
+
+    .adr-main-container {
+        padding-top: auto !important;
+    }
+}
+
+@media (max-width: 769px) {
+    .adr-main-title {
+        font-size: 0.85rem;
+    }
+
+    .adr-hamburger {
+        top: 1.4rem;
+    }
+
+    .adr-main-container {
+        padding-top: 5.5rem !important;
+    }
+
+    .adr-bar-chart {
+        min-height: auto;
+        gap: 0.8rem;
+    }
+
+    .adr-bar-item {
+        min-width: 50%;
+        width: 10%;
+        height: auto;
+        margin: 2rem 0 0 0;
+    }
+
+    .adr-pie-legend {
+        gap: 0rem;
+    }
+
+    td {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width:1168px) and (min-width:1025px) {
+    .adr-header {
+        padding: 1rem 1.5rem;
+    }
+
+    .adr-logo {
+        height: 3rem;
+    }
+
+    .adr-main-title {
+        font-size: 1rem;
+    }
+
+    .adr-subtitle {
+        font-size: 0.875rem;
+    }
+
+    .adr-nav {
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .adr-hamburger {
+        display: flex;
+        top: 1.8rem;
+    }
+
+    .adr-menu-overlay {
+        display: block;
+    }
+}
+
+@media (min-width: 1000px) {
+    .adr-pie-chart {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .adr-pie-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+/* ========================================
+   FIX PARA BOTÓN SALIR EN MÓVIL
+======================================== */
+
+@media (max-width: 768px) {
+    .adr-nav {
+        height: 100vh !important;
+        overflow-y: auto !important;
+        padding-bottom: 2rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .adr-nav-link.adr-nav-salir {
+        margin-top: auto !important;
+        margin-bottom: 1rem !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .adr-nav {
+        padding-bottom: 2rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .adr-nav {
+        padding: 4rem 1rem 2.5rem 1rem !important;
+        height: 100vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+    }
+
+    .adr-nav-link {
+        flex-shrink: 0 !important;
+    }
+
+    .adr-nav-link.adr-nav-salir {
+        margin-top: auto !important;
+        margin-bottom: 1.5rem !important;
+    }
+}
