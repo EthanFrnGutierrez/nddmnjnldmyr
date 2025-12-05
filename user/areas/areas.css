@@ -2964,12 +2964,12 @@ body {
     .area-requirements-grid{
         gap: 1rem !important;}
     .area-name{
-        font-size: 0.85rem !important;}
+        font-size: 0.8rem !important;}
     .hero-section{
         padding-top: 5rem !important;
     }
 }
-@media screen and (max-width:360px){
+@media screen and  (max-width:360px){
     .create-btn, .search-box{
         border-radius: 1rem !important;}
 }
