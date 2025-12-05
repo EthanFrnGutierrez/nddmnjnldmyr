@@ -2214,7 +2214,7 @@ body {
         width: 280px;
         background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
         justify-content: flex-start;
-        padding: 6rem 1.5rem 2rem;
+        padding: 7rem 1.5rem 2rem;
         box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
         transition: right 0.3s ease-in-out;
         z-index: 1000;
@@ -2840,6 +2840,25 @@ body {
 @media (max-width: 360px) {
     .adr-nav {
         padding: 4rem 1rem 2.5rem 1rem !important;
+        height: 100vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+    }
+
+    .adr-nav-link {
+        flex-shrink: 0 !important;
+    }
+
+    .adr-nav-link.adr-nav-salir {
+        margin-top: auto !important;
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+@media (min-width: 361px) and (max-width: 600px) {
+    .adr-nav {
+        padding: 4.5rem 1.25rem 2.5rem 1.25rem !important;
         height: 100vh !important;
         display: flex !important;
         flex-direction: column !important;
